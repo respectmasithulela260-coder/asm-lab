@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Script your mine in JavaScript – ASM Lab</title>
+<meta name="description" content="A Script panel with templates, nodes, airways, fans, heat, boundaries and a solve you can await.">
+<link rel="canonical" href="https://respectmasithulela260-coder.github.io/asm-lab/whats-new/scripting/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Script your mine in JavaScript – ASM Lab">
+<meta property="og:description" content="A Script panel with templates, nodes, airways, fans, heat, boundaries and a solve you can await.">
+<link rel="icon" type="image/svg+xml" href="../../logo.svg">
+<link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+<canvas id="air" aria-hidden="true"></canvas>
+<header class="bar">
+  <a class="brand" href="../../"><img src="../../logo.svg" alt="" width="30" height="30">ASM Lab</a>
+  <nav><a href="../../demo/">Demo</a><a href="../../whats-new/" class="here" aria-current="page">What's new</a><a href="../../docs/">Docs</a><a href="../../tutorials/">Tutorials</a><a href="../../licences/">Licences</a><a href="../../bugs/">Bugs</a><a class="cta" href="../../download/">Download</a></nav>
+</header>
+<main id="top" class="page">
+<section class="article"><article class="rd">
+<a class="text-link" href="../../whats-new/">← What's new</a><br><br>
+<span class="tag">Scripting</span><h1><span class="live-text">Script your mine in JavaScript</span></h1>
+<div class="pic"><svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><rect width="400" height="250" fill="#0d0b16"/>
+    <g font-family="Consolas,monospace" font-size="13">
+    <text x="26" y="52" fill="#7c6f9c">// make a ring and solve it</text>
+    <text x="26" y="82" fill="#ec4899">const</text><text x="76" y="82" fill="#e9d5ff"> a = node(0, 0)</text>
+    <text x="26" y="108" fill="#ec4899">const</text><text x="76" y="108" fill="#e9d5ff"> b = node(300, 0)</text>
+    <text x="26" y="134" fill="#e9d5ff">airway(a, b, { area: 20 })</text>
+    <text x="26" y="160" fill="#ec4899">await</text><text x="70" y="160" fill="#e9d5ff"> solve()</text>
+    <rect x="26" y="176" width="9" height="16" fill="#f9a8d4"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></rect></g>
+    <rect x="290" y="30" width="86" height="190" rx="10" fill="#17122a"/>
+    <rect x="302" y="46" width="20" height="10" rx="5" fill="#7c3aed"><animate attributeName="width" values="20;60;20" dur="3s" repeatCount="indefinite"/></rect><rect x="302" y="80" width="31" height="10" rx="5" fill="#7c3aed"><animate attributeName="width" values="31;54;31" dur="3.4s" repeatCount="indefinite"/></rect><rect x="302" y="114" width="42" height="10" rx="5" fill="#7c3aed"><animate attributeName="width" values="42;48;42" dur="3.8s" repeatCount="indefinite"/></rect><rect x="302" y="148" width="53" height="10" rx="5" fill="#7c3aed"><animate attributeName="width" values="53;42;53" dur="4.2s" repeatCount="indefinite"/></rect><rect x="302" y="182" width="64" height="10" rx="5" fill="#7c3aed"><animate attributeName="width" values="64;36;64" dur="4.6s" repeatCount="indefinite"/></rect></svg></div>
+<p>Open the Script panel to build and change a network with code. Scripts can create nodes and airways, add ducts, fans and size changes, set heat and boundaries, and run the solve.</p><p>Templates are grouped by category, the editor shows line numbers and syntax colours, and heavy work runs in the background so the window stays responsive.</p>
+<pre><code>const a = node(0, 0);
+const b = node(300, 0);
+airway(a, b, { area: 20 });
+await solve();
+console.log(result());</code></pre>
+<h4>What you get</h4><ul><li>Nodes, airways, ducts, fans, heat and boundaries</li><li>await solve() with result()</li><li>Write results to CSV</li><li>File access on the desktop app, asked first</li></ul>
+
+
+<div class="pn"><a class="btn ghost" href="../../whats-new/node-position/">← Say where the node sits on the section</a><a class="btn ghost" href="../../whats-new/collections/">Collections and links →</a></div>
+</article></section>
+</main>
+<footer>ASM Lab · mine ventilation software · <a href="../../licences/">Licences</a> · <a href="../../bugs/">Report a bug</a> · <a href="../../docs/">Docs</a></footer>
+<script>window.ASM_ROOT="../../"</script>
+<script src="../../config.js"></script>
+<script src="../../human.js"></script>
+<script src="../../app.js"></script>
+
+</body>
+</html>

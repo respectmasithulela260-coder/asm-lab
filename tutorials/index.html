@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tutorial: your first mine ventilation project – ASM Lab</title>
+<meta name="description" content="Step by step from installing ASM Lab to solving a ventilation network, reading the results and running tunnel CFD.">
+<link rel="canonical" href="https://respectmasithulela260-coder.github.io/asm-lab/tutorials/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tutorial: your first mine ventilation project – ASM Lab">
+<meta property="og:description" content="Step by step from installing ASM Lab to solving a ventilation network, reading the results and running tunnel CFD.">
+<link rel="icon" type="image/svg+xml" href="../logo.svg">
+<link rel="stylesheet" href="../style.css">
+
+</head>
+<body>
+<canvas id="air" aria-hidden="true"></canvas>
+<header class="bar">
+  <a class="brand" href="../"><img src="../logo.svg" alt="" width="30" height="30">ASM Lab</a>
+  <nav><a href="../demo/">Demo</a><a href="../whats-new/">What's new</a><a href="../docs/">Docs</a><a href="../tutorials/" class="here" aria-current="page">Tutorials</a><a href="../licences/">Licences</a><a href="../bugs/">Bugs</a><a class="cta" href="../download/">Download</a></nav>
+</header>
+<main id="top" class="page">
+<section class="pg" id="tutorials">
+    <div class="wrap">
+      <div class="panel p-white reveal" style="padding:clamp(28px,5vw,64px)">
+        <h1 class="ph">Tutorials</h1>
+        <p class="sub">Your first mine ventilation project, step by step. Open a step to read it.</p>
+        <div class="steps" id="steps"><div class="step open"><button type="button" aria-expanded="true">Install and open ASM Lab</button><div class="body"><div><p>Download the latest version from the release page and run the installer. Open ASM Lab. Projects you save are .asmlab files, so you can double-click one later to open it.</p></div></div></div>
+<div class="step"><button type="button" aria-expanded="false">Draw your tunnels</button><div class="body"><div><p>Use the drawing pen to lay out airways node to node. Set the section and where the node sits on it (centre of area, floor or roof). Curves and slopes follow what you draw.</p></div></div></div>
+<div class="step"><button type="button" aria-expanded="false">Add fans, doors and equipment</button><div class="body"><div><p>Open the Library, pick an item and press Place; the Library closes and shows where to click. Fans take a curve or a fixed flow, and regulators set a resistance.</p></div></div></div>
+<div class="step"><button type="button" aria-expanded="false">Solve the network</button><div class="body"><div><p>Press Solve. ASM Lab gives airflow, pressure, density and mass flow for every airway. If tunnels sit on different collections, the solve names the ones it left out and offers Link them.</p></div></div></div>
+<div class="step"><button type="button" aria-expanded="false">Check and read the results</button><div class="body"><div><p>Run Check to find overlapping tunnels and unmerged nodes, and merge them. The Charts tab shows where the air is used and where the heat comes from.</p></div></div></div>
+<div class="step"><button type="button" aria-expanded="false">Look at it in 3D CFD</button><div class="body"><div><p>Click the tunnels you want in the 3D view, press the 3D stope button and Import. Mesh and solve, then view streamlines, a cross-section, the wall and travelling arrows.</p></div></div></div>
+<div class="step"><button type="button" aria-expanded="false">Script it</button><div class="body"><div><p>Open the Script panel, pick a template and press Run. Use await solve() and result() to read the numbers, and writeCsv to save them.</p></div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  
+</main>
+<footer>ASM Lab · mine ventilation software · <a href="../licences/">Licences</a> · <a href="../bugs/">Report a bug</a> · <a href="../docs/">Docs</a></footer>
+<script>window.ASM_ROOT="../"</script>
+<script src="../config.js"></script>
+<script src="../human.js"></script>
+<script src="../app.js"></script>
+
+</body>
+</html>

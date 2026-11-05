@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Report a bug and known issues – ASM Lab</title>
+<meta name="description" content="Report a problem with ASM Lab and see the known issues and what has been fixed.">
+<link rel="canonical" href="https://respectmasithulela260-coder.github.io/asm-lab/bugs/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Report a bug and known issues – ASM Lab">
+<meta property="og:description" content="Report a problem with ASM Lab and see the known issues and what has been fixed.">
+<link rel="icon" type="image/svg+xml" href="../logo.svg">
+<link rel="stylesheet" href="../style.css">
+
+</head>
+<body>
+<canvas id="air" aria-hidden="true"></canvas>
+<header class="bar">
+  <a class="brand" href="../"><img src="../logo.svg" alt="" width="30" height="30">ASM Lab</a>
+  <nav><a href="../demo/">Demo</a><a href="../whats-new/">What's new</a><a href="../docs/">Docs</a><a href="../tutorials/">Tutorials</a><a href="../licences/">Licences</a><a href="../bugs/" class="here" aria-current="page">Bugs</a><a class="cta" href="../download/">Download</a></nav>
+</header>
+<main id="top" class="page">
+<section class="pg"><div class="wrap">
+  <h1 class="ph">Bugs and <span class="live-text">known issues</span></h1>
+  <p class="sub">Tell us what went wrong. Reports are private: only the issues we choose to list appear below.</p>
+  <div class="bug-grid">
+    <div class="panel p-ink bite2-off" style="padding:clamp(24px,4vw,44px)">
+      <h2 class="h3">Report a bug</h2>
+      <form id="bugForm" class="bug-form">
+        <label for="bugTitle">What went wrong, in a line</label><input id="bugTitle" required maxlength="160">
+        <label for="bugWhat">What happened</label><textarea id="bugWhat" rows="4" required maxlength="6000"></textarea>
+        <label for="bugSteps">Steps to make it happen</label><textarea id="bugSteps" rows="3" maxlength="6000"></textarea>
+        <div class="bug-two">
+          <div><label for="bugSeverity">How serious</label><select id="bugSeverity"><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option><option value="critical">Critical</option></select></div>
+          <div><label for="bugVersion">ASM Lab version</label><input id="bugVersion" maxlength="40" placeholder="2026.1.29"></div>
+        </div>
+        <label for="bugShot">Screenshot (optional, up to 1 MB)</label><input id="bugShot" type="file" accept="image/png,image/jpeg,image/webp">
+        <div class="trap" aria-hidden="true"><label for="bugSite">Leave this empty</label><input id="bugSite" tabindex="-1" autocomplete="off"></div>
+        <button class="btn main" id="bugSend" type="submit">Send report</button>
+        <p class="lic-note" id="bugNote" role="status"></p>
+      </form>
+    </div>
+    <div>
+      <h2 class="h3">Known issues</h2>
+      <p class="lic-note" id="knownNote" role="status">Loading…</p>
+      <table class="lic-table" id="knownTable" hidden><thead><tr><th>Issue</th><th>Severity</th><th>Status</th></tr></thead><tbody id="knownRows"></tbody></table>
+    </div>
+  </div>
+</div></section>
+
+</main>
+<footer>ASM Lab · mine ventilation software · <a href="../licences/">Licences</a> · <a href="../bugs/">Report a bug</a> · <a href="../docs/">Docs</a></footer>
+<script>window.ASM_ROOT="../"</script>
+<script src="../config.js"></script>
+<script src="../human.js"></script>
+<script src="../app.js"></script>
+<script src="../bugs.js"></script>
+</body>
+</html>

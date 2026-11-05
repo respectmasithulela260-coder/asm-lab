@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ASM Lab licences: admin</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src https: http://localhost:* http://127.0.0.1:*; base-uri 'none'; form-action 'none'">
+<link rel="icon" type="image/svg+xml" href="../logo.svg">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<header class="bar">
+  <a class="brand" href="../"><img src="../logo.svg" alt="" width="30" height="30">ASM Lab</a>
+  <div class="account" id="account" hidden>
+    <span>Signed in as <b id="who"></b></span>
+    <button class="btn ghost mini" id="signOut" type="button">Sign out</button>
+  </div>
+</header>
+
+<main>
+  <section id="signIn">
+    <div class="wrap narrow">
+      <div class="panel p-ink bite reveal" id="signInPanel">
+        <h2>Licence <span class="live-text">admin</span></h2>
+        <p class="sub">Sign in with a fine-grained GitHub token that has contents read and write on <code id="repoName"></code>.</p>
+        <form id="signInForm" class="stack">
+          <label for="token">GitHub token</label>
+          <input id="token" type="password" autocomplete="off" spellcheck="false" required>
+          <div class="row start">
+            <button class="btn main" type="submit">Sign in</button>
+            <button class="btn ghost" id="retry" type="button" hidden>Try again</button>
+          </div>
+        </form>
+        <p id="signInNote" class="notice err" role="alert"></p>
+        <p class="hint">The token stays only in this browser until you press Sign out. <a class="link" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noreferrer">Create a token on GitHub</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="manage" hidden>
+    <div class="wrap">
+      <div class="panel p-ink bite reveal" id="managePanel">
+        <h2>ASM Lab <span class="live-text">licences</span></h2>
+        <p class="sub">ASM Lab checks its key at least once a day, so changes reach the app within a day.</p>
+
+        <label class="tick"><input type="checkbox" id="licPublic"> Show the licence list to visitors (keys ticked Listed)</label>
+
+        <form id="licenceForm" class="gen">
+          <div><label for="licCount">How many keys</label><input id="licCount" type="number" min="1" max="500" value="1"></div>
+          <div><label for="licExpiry">Expiry date</label><input id="licExpiry" type="date" required></div>
+          <div><label for="licDevices">Computers per key</label><input id="licDevices" type="number" min="1" max="50" value="1"></div>
+          <div><label for="licLabel">Label (customer, site…)</label><input id="licLabel" maxlength="120" placeholder="optional"></div>
+          <label class="tick"><input type="checkbox" id="licListed" checked> Listed</label>
+          <button id="licGenerate" class="btn main" type="submit">Generate keys</button>
+        </form>
+
+        <p id="notice" class="notice" role="status" hidden></p>
+        <p id="seatsNote" class="hint"></p>
+
+        <div class="tools">
+          <input id="licFilter" placeholder="Filter by key, label or batch" aria-label="Filter">
+          <button id="licReload" class="btn ghost mini" type="button">Reload</button>
+          <button id="licExport" class="btn ghost mini" type="button">Export CSV</button>
+          <span id="licCountText" class="hint"></span>
+        </div>
+
+        <table class="lic-table admin-table">
+          <thead><tr><th>Key</th><th>Label</th><th>Expires</th><th>Computers</th><th>Status</th><th>Listed</th><th></th></tr></thead>
+          <tbody id="licenceRows"></tbody>
+        </table>
+
+        <h2 class="issues-head">Known <span class="live-text">issues</span></h2>
+        <p class="sub">Shown on the public Bugs page.</p>
+        <form id="issueForm" class="gen">
+          <div><label for="issueTitle">Issue</label><input id="issueTitle" maxlength="160" required></div>
+          <div><label for="issueSeverity">Severity</label><select id="issueSeverity"><option>low</option><option selected>medium</option><option>high</option><option>critical</option></select></div>
+          <button class="btn main" type="submit">Add issue</button>
+        </form>
+        <table class="lic-table admin-table">
+          <thead><tr><th>Issue</th><th>Severity</th><th>Status</th><th>Fixed in</th><th></th></tr></thead>
+          <tbody id="issueRows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="../config.js"></script>
+<script src="store.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
