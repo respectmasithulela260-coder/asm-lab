@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ASM Lab – mine ventilation simulation software for Windows</title>
+<meta name="description" content="ASM Lab is mine ventilation software: solve airflow, pressure, heat and humidity in a mine network and run 3D tunnel CFD. Free Windows download, guides and tutorials.">
+<meta name="keywords" content="ASM Lab, mine ventilation software, mine ventilation simulation, ventilation network solver, mining CFD, tunnel airflow, underground mine heat and humidity">
+<link rel="canonical" href="https://respectmasithulela260-coder.github.io/asm-lab/">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ASM Lab – mine ventilation simulation software">
+<meta property="og:description" content="Design and solve mine ventilation networks, heat and humidity, and 3D tunnel CFD. Download for Windows.">
+<meta property="og:image" content="logo.svg">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"ASM Lab","alternateName":"ASM Lab mine ventilation software","applicationCategory":"EngineeringApplication","operatingSystem":"Windows, Web","description":"Mine ventilation network solver with heat, humidity and 3D tunnel CFD.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="air" aria-hidden="true"></canvas>
+
+<header class="bar">
+  <a class="brand" href="#top"><img src="logo.svg" alt="" width="30" height="30">ASM Lab</a>
+  <nav>
+    <a href="#what">What it does</a><a href="#demo">Demo</a><a href="#new">What's new</a><a href="#docs">Docs</a><a href="#tutorials">Tutorials</a>
+    <a class="cta" href="#download">Download</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">ASM Lab · mine ventilation software</p>
+      <h1><span class="live-text">Feel the air</span><br>before you dig</h1>
+      <p class="lead">ASM Lab is a desktop program that designs and solves mine ventilation networks: how much air each tunnel gets, how hot it gets, and how it moves in 3D.</p>
+      <div class="row">
+        <a class="btn main dl-win" href="https://github.com/Respect-masithulela/ASM-Lab-Releases/releases/latest">Download ASM Lab</a>
+        <a class="btn ghost" href="#demo">Try the live demo</a>
+      </div>
+      <p class="small">Windows installer · web version for Mac · move your mouse, the air answers</p>
+    </div>
+    <span class="scroll" aria-hidden="true"></span>
+  </section>
+
+  <section id="what">
+    <div class="wrap">
+      <div class="panel p-purple bite reveal" style="padding:clamp(28px,5vw,64px)">
+        <h2>What we do</h2>
+        <p class="sub" style="color:#eadcff">We help mine engineers answer three questions: does every working place get enough air, will it stay cool enough, and where does the air really go?</p>
+        <div class="do">
+          <div class="card live"><div class="ico"><b>≋</b></div><h3>Solve the network</h3><p>Draw tunnels, add fans, doors and regulators, and get airflow and pressure in every airway.</p></div>
+          <div class="card live"><div class="ico"><b>☀</b></div><h3>Heat and humidity</h3><p>Follow dry bulb, wet bulb and moisture along the route and see where the heat builds up.</p></div>
+          <div class="card live"><div class="ico"><b>◎</b></div><h3>See it in 3D</h3><p>Send the tunnels to the 3D stope solver and watch streamlines, sections and travelling arrows.</p></div>
+          <div class="card live"><div class="ico"><b>{ }</b></div><h3>Script anything</h3><p>Build and change whole networks with JavaScript, then solve and export the results.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="demo">
+    <div class="wrap reveal">
+      <h2>Move the air <span class="live-text">yourself</span></h2>
+      <p class="sub">A small network with one fan and a door. Drag the junction, open or close the door, and see how the air shares itself between the branches.</p>
+      <div class="demo">
+        <div class="stage" id="stage"><canvas id="democ"></canvas></div>
+        <div class="ctrl">
+          <div><label>Fan flow <b id="vq">30 m³/s</b></label><input id="q" type="range" min="5" max="60" value="30"></div>
+          <div><label>Door in the side branch <b id="vd">open</b></label><input id="d" type="range" min="0" max="100" value="0"></div>
+          <div class="read"><div>Straight on<b id="r1">–</b></div><div>Side branch<b id="r2">–</b></div><div>Fan pressure<b id="r3">–</b></div><div>Air speed<b id="r4">–</b></div></div>
+          <p class="hint">Illustration of the idea, not the solver: each branch resists in proportion to its length and the door, and the air splits so both branches see the same pressure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="inside">
+    <div class="pin">
+      <div id="inside3d"></div>
+      <div class="inside-top">
+        <p class="eyebrow">Inside a real tunnel model</p>
+        <h2>Scroll to <span class="live-text">fly in</span></h2>
+        <p class="sub" style="margin-bottom:0">This is a 6 by 5 m horseshoe tunnel, loaded from a GLB file. The arrows show the idea of the flow: quick in the middle, slow at the wall, red where the air enters and blue as it travels on. Scroll faster and the air does too.</p>
+      </div>
+      <div class="inside-hud"><span>Air speed <b id="insideSpd">–</b></span><i><u id="insideBar"></u></i></div>
+      <p id="insideStatus" class="inside-status">Scroll down to load the tunnel</p>
+    </div>
+  </div>
+
+  <section id="new">
+    <div class="wrap">
+      <h2 class="reveal">What's <span class="live-text">new</span></h2>
+      <p class="sub reveal">Every new feature, with what it does. Tap one to read it.</p>
+      <div class="news" id="news"></div>
+    </div>
+  </section>
+
+  <section id="docs">
+    <div class="wrap">
+      <div class="panel p-pink bite2 reveal" style="padding:clamp(28px,5vw,64px)">
+        <h2>Documentation</h2>
+        <p class="sub" style="color:#fff3fb">Guides you can read here or keep as PDFs.</p>
+        <div class="docs">
+          <a class="doc live" href="docs/ASM-Lab-User-Guide.pdf"><h3>User guide</h3><p>From the first project to results. Slides, in plain steps.</p><em>PDF · 2.6 MB</em></a>
+          <a class="doc live" href="docs/ASM-Lab-Documentation.pdf"><h3>Technical documentation</h3><p>What every screen, setting and file does.</p><em>PDF · 0.6 MB</em></a>
+          <a class="doc live" href="docs/ASM-Lab-Solver-Guide.pdf"><h3>Solver guide</h3><p>The equations, the methods and worked cases.</p><em>PDF · 0.6 MB</em></a>
+          <a class="doc live" href="https://github.com/Respect-masithulela/ASM-Lab-Releases/blob/main/guides/QUICK-START.md"><h3>Quick start</h3><p>The shortest way to a first solved network.</p><em>Guide</em></a>
+          <a class="doc live" href="https://github.com/Respect-masithulela/ASM-Lab-Releases/tree/main/conversion-kit"><h3>Conversion kit</h3><p>Scripts that bring networks, heat inputs and ducts in from other software.</p><em>With a worked example</em></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tutorials">
+    <div class="wrap">
+      <div class="panel p-white reveal" style="padding:clamp(28px,5vw,64px)">
+        <h2>Tutorials</h2>
+        <p class="sub">Your first project, step by step. Open a step to read it.</p>
+        <div class="steps" id="steps"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="download" class="dl">
+    <div class="wrap reveal">
+      <h2>Get <span class="live-text">ASM Lab</span></h2>
+      <p class="sub" style="margin-inline:auto">Windows has an installer that updates itself. On a Mac or any other computer, use the web version: nothing to install.</p>
+      <div class="row">
+        <a class="btn main big dl-win" id="dlWin" href="https://github.com/Respect-masithulela/ASM-Lab-Releases/releases/latest">Download for Windows</a>
+        <a class="btn ghost big" href="https://respect-masithulela.github.io/ASM-Lab-Releases/">Open the web version</a>
+      </div>
+      <p class="ver" id="ver">Always the newest release.</p>
+    </div>
+  </section>
+</main>
+
+<footer>ASM Lab · mine ventilation simulation</footer>
+
+<div id="reader" aria-hidden="true"></div>
+<button class="close" id="close" aria-label="Close article">×</button>
+
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/addons/"}}</script>
+<script src="articles.js"></script>
+<script src="app.js"></script>
+<script type="module" src="inside.js"></script>
+</body>
+</html>
