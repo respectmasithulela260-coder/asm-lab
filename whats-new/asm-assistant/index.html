@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ask the ASM Assistant – ASM Lab</title>
+<meta name="description" content="Tell it what to draw, ask about your ventilation, run a fire. It works with your model through ASM Lab’s own solver.">
+<link rel="canonical" href="https://respectmasithulela260-coder.github.io/asm-lab/whats-new/asm-assistant/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ask the ASM Assistant – ASM Lab">
+<meta property="og:description" content="Tell it what to draw, ask about your ventilation, run a fire. It works with your model through ASM Lab’s own solver.">
+<link rel="icon" type="image/svg+xml" href="../../logo.svg">
+<link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+<canvas id="air" aria-hidden="true"></canvas>
+<header class="bar">
+  <a class="brand" href="../../"><img src="../../logo.svg" alt="" width="30" height="30">ASM Lab</a>
+  <nav><a href="../../demo/">Demo</a><a href="../../whats-new/" class="here" aria-current="page">What's new</a><a href="../../docs/">Docs</a><a href="../../tutorials/">Tutorials</a><a href="../../licences/">Licences</a><a href="../../bugs/">Bugs</a><a class="cta" href="../../download/">Download</a></nav>
+</header>
+<main id="top" class="page">
+<section class="article"><article class="rd">
+<a class="text-link" href="../../whats-new/">← What's new</a><br><br>
+<span class="tag">Assistant</span><h1><span class="live-text">Ask the ASM Assistant</span></h1>
+<div class="pic"><svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><rect width="400" height="250" fill="#0d0b16"/>
+    <g font-family="Consolas,monospace" font-size="13">
+    <text x="26" y="52" fill="#7c6f9c">// make a ring and solve it</text>
+    <text x="26" y="82" fill="#ec4899">const</text><text x="76" y="82" fill="#e9d5ff"> a = node(0, 0)</text>
+    <text x="26" y="108" fill="#ec4899">const</text><text x="76" y="108" fill="#e9d5ff"> b = node(300, 0)</text>
+    <text x="26" y="134" fill="#e9d5ff">airway(a, b, { area: 20 })</text>
+    <text x="26" y="160" fill="#ec4899">await</text><text x="70" y="160" fill="#e9d5ff"> solve()</text>
+    <rect x="26" y="176" width="9" height="16" fill="#f9a8d4"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></rect></g>
+    <rect x="290" y="30" width="86" height="190" rx="10" fill="#17122a"/>
+    <rect x="302" y="46" width="20" height="10" rx="5" fill="#7c3aed"><animate attributeName="width" values="20;60;20" dur="3s" repeatCount="indefinite"/></rect><rect x="302" y="80" width="31" height="10" rx="5" fill="#7c3aed"><animate attributeName="width" values="31;54;31" dur="3.4s" repeatCount="indefinite"/></rect><rect x="302" y="114" width="42" height="10" rx="5" fill="#7c3aed"><animate attributeName="width" values="42;48;42" dur="3.8s" repeatCount="indefinite"/></rect><rect x="302" y="148" width="53" height="10" rx="5" fill="#7c3aed"><animate attributeName="width" values="53;42;53" dur="4.2s" repeatCount="indefinite"/></rect><rect x="302" y="182" width="64" height="10" rx="5" fill="#7c3aed"><animate attributeName="width" values="64;36;64" dur="4.6s" repeatCount="indefinite"/></rect></svg></div>
+<p>The ASM Assistant is a chat panel beside your model. Ask it which working places get too little air, where the wet bulb is too high, or what happens if a fan is raised. Tell it to draw a ramp, a twin-shaft system or several levels at once, and it builds them. Every number it gives comes from ASM Lab’s own solver, run on a copy: your model changes only when you put its work in.</p><p>It checks heat stress with ASM Lab’s body model, runs fire studies that open in the Fire window, draws small charts in the chat, and opens the app’s own windows when that is the better place to look. With web search switched on it can look up outside facts, such as a regulation or an equipment specification, and cites its sources.</p><p>You bring your own key: Claude, OpenRouter (free models available) or Google Gemini. Keys can be saved on your computer, locked with a password, and you can keep spare keys that take over when one runs out. A small bar shows how much of your free allowance is used, and Rewind takes the model and the conversation back to before any question.</p>
+
+<h4>What you get</h4><ul><li>Draw, change and solve by asking</li><li>Heat stress, fires and charts</li><li>Web search with sources</li><li>Your own key: Claude, OpenRouter or Gemini</li><li>Rewind any question</li></ul>
+<h4>To know</h4><p>Answers from general knowledge are marked as such; numbers about your model always come from the solver.</p>
+
+<div class="pn"><span></span><a class="btn ghost" href="../../whats-new/encrypted-files/">Project files are encrypted →</a></div>
+</article></section>
+</main>
+<footer>ASM Lab · mine ventilation software · <a href="../../licences/">Licences</a> · <a href="../../bugs/">Report a bug</a> · <a href="../../docs/">Docs</a></footer>
+<script>window.ASM_ROOT="../../"</script>
+<script src="../../config.js"></script>
+<script src="../../human.js"></script>
+<script src="../../app.js"></script>
+
+</body>
+</html>
