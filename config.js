@@ -1,1 +1,1 @@
-window.ASM_CONFIG={HUMAN_CHECK:!1,TURNSTILE_SITE_KEY:"0x4AAAAAAF1JxvmWkyxA7qeZ",API_URL:"https://asm-lab-api.masithulelapfariso6.workers.dev",KEYS_REPO:"respectmasithulela260-coder/asm-lab-source",KEYS_PATH:"licences/keys.json",KEYS_BRANCH:"main"};
+window.ASM_CONFIG={HUMAN_CHECK:!1,TURNSTILE_SITE_KEY:"0x4AAAAAAF1JxvmWkyxA7qeZ",API_URL:"https://asm-lab-api.masithulelapfariso6.workers.dev"};
