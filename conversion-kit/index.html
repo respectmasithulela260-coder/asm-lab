@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Conversion kit – ASM Lab</title>
+<meta name="description" content="Scripts that bring mine ventilation networks, heat inputs and ducts into ASM Lab from other software, with a worked example. Download as a zip.">
+<link rel="canonical" href="https://respectmasithulela260-coder.github.io/asm-lab/conversion-kit/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Conversion kit – ASM Lab">
+<meta property="og:description" content="Scripts that bring mine ventilation networks, heat inputs and ducts into ASM Lab from other software, with a worked example. Download as a zip.">
+<link rel="icon" type="image/svg+xml" href="../logo.svg">
+<link rel="stylesheet" href="../style.css">
+
+</head>
+<body>
+<canvas id="air" aria-hidden="true"></canvas>
+<header class="bar">
+  <a class="brand" href="../"><img src="../logo.svg" alt="" width="30" height="30">ASM Lab</a>
+  <nav><a href="../demo/">Demo</a><a href="../whats-new/">What's new</a><a href="../docs/" class="here" aria-current="page">Docs</a><a href="../tutorials/">Tutorials</a><a href="../licences/">Licences</a><a href="../bugs/">Bugs</a><a class="cta" href="../download/">Download</a></nav>
+</header>
+<main id="top" class="page">
+<section class="pg"><div class="wrap kit">
+  <h1 class="ph">Conversion <span class="live-text">kit</span></h1>
+  <p class="sub">Scripts that bring networks, heat inputs and ducts into ASM Lab from other software, with a worked example.</p>
+  <div class="row"><a class="btn main big" href="../downloads/ASM-Lab-conversion-kit.zip" download="ASM-Lab-conversion-kit.zip">Download the kit (.zip, 44 KB)</a>
+  <a class="btn ghost big" href="https://github.com/Respect-masithulela/ASM-Lab-Releases/tree/main/conversion-kit">View on GitHub</a></div>
+  <p class="small">Unzip it anywhere: the scripts need Python 3 (and Node.js for the headless runner).</p>
+  <div class="kit-doc">
+<p>For people (and their AI models) who convert, build or edit ASM Lab projects outside the app. Read this first, then the scripts.</p>
+<h2>What is here</h2>
+<div class="kit-table"><table><thead><tr><th>File</th><th>Does</th></tr></thead><tbody><tr><td><code>scripts/network_export_to_asmlab.py</code></td><td>Another network tool's exported tables (branches, nodes, tunnels, shafts, fans, control managers) → an ASM Lab <b>network file</b> (<code>.asmlab.json</code>). The header comment lists every device rule.</td></tr><tr><td><code>scripts/thermal_to_asmlab.py</code></td><td>Adds heat inputs (rock, wetness, age, coolers, point heat) to a <b>full project</b>.</td></tr><tr><td><code>scripts/ducts_to_asmlab.py</code></td><td>Duct branches → ASM Lab ducts (<code>.ducts.json</code>).</td></tr><tr><td><code>scripts/drawing_to_wall_test_pack.py</code>, <code>scripts/add_fans_and_walls.py</code></td><td>Examples of building a full project in code: fan tables, wall devices, boundaries.</td></tr><tr><td><code>scripts/run_headless.mjs</code></td><td>Solves a full project with ASM Lab's own code, no window. <code>node run_headless.mjs &lt;assets dir&gt; &lt;project&gt; &lt;aero|both&gt; &lt;out&gt;</code> (assets dir = the folder holding <code>actions-*.js</code> and <code>store-*.js</code>).</td></tr><tr><td><code>scripts/compare_with_reference.py</code></td><td>Airway-by-airway comparison of wet bulb, speed and specific cooling power. Reports <b>min, max, median</b> and the spread.</td></tr><tr><td><code>scripts/migrate_wetness.py</code></td><td>Old film-model wetness → rating scale.</td></tr><tr><td><code>scripts/psychro.py</code></td><td>Moist-air density from pressure, dry and wet bulb.</td></tr><tr><td><code>data/scp_table.json</code>, <code>data/rock_library.json</code></td><td>SCP table (W/m², wet bulb × speed) and rock properties.</td></tr><tr><td><code>example/</code></td><td><code>make_example.py</code> writes a small full project (fan table, wall, rock heat, bulk air cooler); <code>small_mine_solved.asmlab.json</code> is its solved result.</td></tr></tbody></table></div>
+<h2>Two file shapes</h2>
+<ol><li><b>Network file</b> — <code>{projectName, notes, network:{nodes, airways, fans, regulators}, nodePositions, thermalSite?}</code>. Open it in ASM Lab (Open model file) and save it: that gives the full project.</li><li><b>Full project</b> — <code>{wetnessScale, files:[{id,name,origin,nodes,tunnels,thermalSite,junctions,...}], ducts, studioStrings, studioSurfaces, workingZ, standards, projectName}</code>. Needed by the headless runner. See <code>example/make_example.py</code> for a complete minimal one.</li></ol>
+<p>Network nodes: <code>id, x, y, elevation, type (intake|exhaust), fixedPressure (Pa), temperature (dry bulb °C), wetBulbTemp (°C)</code>.<br>Airways: <code>id, fromNode, toNode, length (m), shape, width, height or diameter (m), frictionFactor (Atkinson k, kg/m³ basis 1.2), resistanceOverride (Ns²/m⁸), fixedQ (m³/s), device (none|fan|regulator), thermal{}</code>.<br>Full-project tunnels: <code>from, to, width, height, length, kind, profile, k, R, fixedQ, device (none|fan|regulator|wall), wallType, wallR, fanCurve [{Q m³/s, P Pa, eta %}], fanKind, rhoRef (kg/m³ the table was measured at), operatingSpeedRps, thermal{}</code>.<br>Units: metres, Pa, m³/s, kg/s, °C, kW. Elevation z is positive up; depth below the collar is negative z.</p>
+<h2>Heat inputs (<code>thermal</code> on an airway, <code>thermalSite</code> on the collection)</h2>
+<ul><li><code>vrtEnabled</code> rock heat on/off; <code>ventilationTimeYr</code> age; <code>rock {k W/m·°C, rho, c}</code>; <code>electricKw</code>, <code>heatKwPerM</code>, <code>heatLatent</code>; <code>dieselPower</code>; <code>explosiveKg</code> + <code>flushTime</code> (blasting heat; also marks a blast point for the re-entry time); <code>cooler {dutyKw | targetDryBulb/targetWetBulb | kind:"bac", waterInC, waterKgS, effectiveness}</code>.</li><li>Site: <code>surfaceDryBulb, surfaceWetBulb, surfacePressure (kPa), wetWall ("film" default | "split"), wetness, rockHeatFactor (default 1.8), rockHeatAll</code>.</li><li><b>Wetness is a rating</b>: Very dry 0, Dry 0.1, Damp 0.275, Wet 0.55, Very wet 0.85 (or a custom 0–1). The film model uses a tenth of it internally. <b>Never type the tenth</b> (0.055 reads as nearly dry). Files saved before 2026.1.19 used the tenth for the film model; add <code>"wetnessScale": 2</code> to anything you write on the rating scale, or the app will multiply stated film values by 10 on opening.</li><li>Fans add their own heat from the operating point, so do not also add the fan's air heat as point heat. Passive devices (doors, walls, fixed flows) add no heat.</li></ul>
+<h2>Rules learned the hard way</h2>
+<ul><li>A fan's direction is its airway direction: for an exhaust fan the airway runs mine node → surface node.</li><li>Surface connections are dead-end nodes at the surface with <code>type</code> intake/exhaust and a fixed pressure; use one barometric pressure, corrected for elevation.</li><li>Fixed mass flow (kg/s) → volume flow at the inlet node's air density (<code>psychro.py</code>).</li><li>An irregular section: keep area and perimeter; use R = k·L·P/A³.</li><li>Keep airway ids identical to the source's so results can be compared by id.</li><li>Fan tables measured at another density: set <code>rhoRef</code>; ASM Lab scales with the density at the fan unless fan scaling is switched off.</li><li>Report errors as min, max and median, not the median alone.</li></ul>
+<h2>Check your result</h2>
+<ol><li><code>node scripts/run_headless.mjs &lt;assets&gt; project.asmlab.json both solved.asmlab.json</code> — the printed line must say <code>"ok":true</code> and the status says whether it converged; read warnings in <code>solveReport.issues</code>.</li><li>Per airway, the solved file holds <code>Q, v, dP, rho</code> and <code>thermo.outlet {tdb, twb, ...}</code>.</li><li>Compare with another tool using <code>compare_with_reference.py</code>.</li></ol></div>
+</div></section>
+</main>
+<footer>ASM Lab · mine ventilation software · <a href="../licences/">Licences</a> · <a href="../bugs/">Report a bug</a> · <a href="../docs/">Docs</a> · <a href="https://github.com/Respect-masithulela/ASM-Lab-Releases">ASM Lab on GitHub</a></footer>
+<script>window.ASM_ROOT="../"</script>
+<script src="../config.js"></script>
+<script src="../human.js"></script>
+<script src="../app.js"></script>
+
+</body>
+</html>
