@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Worked examples: refrigeration and cooling — ASM Lab 1.45 documentation</title>
+<meta name="description" content="Course self-study problems on plant duty, positional efficiency, COP and heat rejection, solved by hand and with ASM Lab, with the error against the memo.">
+<link rel="canonical" href="https://respectmasithulela260-coder.github.io/asm-lab/manual/ex-refrigeration/">
+<meta property="og:site_name" content="ASM Lab">
+<link rel="icon" type="image/svg+xml" href="../../logo.svg">
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="../../manual.css">
+<script>try{if(innerWidth>=1100&&localStorage.getItem("asm-manual-toc")!=="closed")document.documentElement.className="toc-open"}catch(e){if(innerWidth>=1100)document.documentElement.className="toc-open"}</script>
+</head>
+<body class="manual">
+<canvas id="air" aria-hidden="true"></canvas>
+<header class="bar">
+  <a class="brand" href="../../"><img src="../../logo.svg" alt="" width="30" height="30">ASM Lab</a>
+  <nav><a href="../../demo/">Demo</a><a href="../../whats-new/">What's new</a><a href="../../docs/">Docs</a><a href="../../manual/" class="here" aria-current="page">Manual</a><a href="../../tutorials/">Tutorials</a><a href="../../licences/">Licences</a><a href="../../bugs/">Bugs</a><a class="cta" href="../../download/">Download</a></nav>
+</header>
+<nav class="mtoc" aria-label="Contents">
+  <a class="mlogo" href="../../manual/"><img src="../../logo.svg" alt="" width="34" height="34"><span>ASM Lab</span><small>1.45</small></a>
+  <ul class="mtree"><li class=" open"><a href="../../manual/"><span class="tw">▾</span>ASM Lab documentation</a><ul><li class=""><a href="../../manual/introduction/"><span class="tw">▸</span>Introduction</a></li><li class=""><a href="../../manual/interface/"><span class="tw">▸</span>The ASM Lab interface</a></li><li class=""><a href="../../manual/files/"><span class="tw"></span>File handling</a></li><li class=""><a href="../../manual/settings/"><span class="tw"></span>Settings</a></li><li class=""><a href="../../manual/first-mine/"><span class="tw"></span>Drawing your first mine</a></li><li class=""><a href="../../manual/ex-airflow/"><span class="tw">▸</span>Worked examples: airflow, pressure and regulators</a></li><li class=""><a href="../../manual/ex-fans/"><span class="tw">▸</span>Worked examples: fans</a></li><li class=""><a href="../../manual/ex-psychrometry/"><span class="tw">▸</span>Worked examples: psychrometry and heat</a></li><li class="here open"><a href="../../manual/ex-refrigeration/"><span class="tw">▸</span>Worked examples: refrigeration and cooling</a><ul><li><a href="#plant-duty-positional-efficiency-and-condenser-water"><span class="tw"></span>Plant duty, positional efficiency and condenser water</a></li><li><a href="#an-underground-cooling-plant"><span class="tw"></span>An underground cooling plant</a></li><li><a href="#summary-of-the-errors"><span class="tw"></span>Summary of the errors</a></li></ul></li></ul></li></ul>
+  <div class="mside-links"><a href="../../">ASM Lab website</a><a href="../../download/">Download</a><a href="../../docs/">PDF guides</a></div>
+</nav>
+<div class="mright">
+<header class="mbar">
+  <input id="msearch" type="search" placeholder="Search the manual" aria-label="Search the manual" autocomplete="off">
+  <div id="mresults" hidden></div>
+</header>
+<button class="mtoggle" type="button" aria-label="Show or hide the contents">⇄</button>
+<main class="mdoc">
+<h1 id="worked-examples-refrigeration-and-cooling">Worked examples: refrigeration and cooling</h1>
+<p>The questions come from the MINN3019A mine ventilation course (tutorials, class calculations, self-study problems and lecture slides). Each one is set out as the question, the hand solution as in the memo, and then the same question answered with ASM Lab, with the difference from the memo. Memo values read off psychrometric charts carry the chart's reading accuracy, about 0.3 kJ/kg on sigma heat and 0.2 °C on a temperature, so differences of that size are reading differences, not errors.</p>
+<h2 id="plant-duty-positional-efficiency-and-condenser-water">Plant duty, positional efficiency and condenser water<a class="hl" href="#plant-duty-positional-efficiency-and-condenser-water" aria-label="Link to this section">¶</a></h2>
+<p>Refrigeration self-study problem 1.</p>
+<p>An underground system: chilled water 35.1 l/s entering the evaporator at 17.2 °C and leaving at 8.9 °C; 30.4 m³/s of air through the cooling coils, in at 31.8/33.9 °C and out at 27.5/27.5 °C, at 110 kPa; condenser water in at 38.4 °C and out at 44.3 °C; actual compressor COP 3.8. Find the plant duty, the positional efficiency and the condenser water flow.</p>
+<h3 id="hand-solution">Hand solution<a class="hl" href="#hand-solution" aria-label="Link to this section">¶</a></h3>
+<div class="eq"><div>Plant duty = evaporator duty = 35.1 × 4.187 × (17.2 − 8.9) = 1 220 kW</div><div>From the 110 kPa chart: S_in = 99.3, S_out = 79.9 kJ/kg, v = 0.836 m³/kg, so m = 30.4 / 0.836 = 36.4 kg/s</div><div>Coil duty = 36.4 × (99.3 − 79.9) = 706.2 kW; positional efficiency = 706.2 / 1 220 = 57.9 %</div><div>Compressor work = 1 220 / 3.8 = 321 kW; condenser duty = 1 541 kW</div><div>Condenser water = 1 541 / (4.187 × (44.3 − 38.4)) = 62.4 l/s</div></div>
+<div class="ans"><b>Answer:</b> 1 220 kW; 57.9 %; 62.4 l/s.</div>
+<h3 id="with-asm-lab">With ASM Lab<a class="hl" href="#with-asm-lab" aria-label="Link to this section">¶</a></h3>
+<h4 class="task" id="task-the-coil-duty-from-the-psychrometric-calculator">Task: The coil duty from the psychrometric calculator</h4>
+<ol><li><b>Tools &gt; Calculators &gt; Psychrometry</b> at 110 kPa: 33.9/31.8 °C and 27.5/27.5 °C give the sigma heats and the specific volume.</li><li>The evaporator and condenser are water-side heat balances (m c Δt), the same in any tool.</li></ol>
+<table><thead><tr><th>Quantity</th><th>Memo</th><th>ASM Lab</th><th>Error</th></tr></thead><tbody><tr><td>Plant duty (kW)</td><td>1 220.0</td><td>1 219.8</td><td>0.02 %</td></tr><tr><td>Sigma heat into the coil (kJ/kg)</td><td>99.3</td><td>99.3</td><td>0.04 %</td></tr><tr><td>Sigma heat out of the coil (kJ/kg)</td><td>79.9</td><td>79.9</td><td>0.02 %</td></tr><tr><td>Specific volume (m³/kg)</td><td>0.836</td><td>0.836</td><td>0.02 %</td></tr><tr><td>Coil duty (kW)</td><td>706.2</td><td>703.7</td><td>0.36 %</td></tr><tr><td>Positional efficiency (%)</td><td>57.9</td><td>57.7</td><td>0.37 %</td></tr><tr><td>Condenser water (l/s)</td><td>62.4</td><td>62.4</td><td>0.04 %</td></tr></tbody></table>
+<h2 id="an-underground-cooling-plant">An underground cooling plant<a class="hl" href="#an-underground-cooling-plant" aria-label="Link to this section">¶</a></h2>
+<p>Refrigeration self-study problem 4.</p>
+<p>Pump power at the cooling coil outlet 60 kW; line losses 160 kW from the evaporator to the coils and 95 kW back; evaporator at 5.9 °C, condenser at 46.1 °C; 50.0 m³/s of air into the coils at 29.0/35.0 °C, out at 23.0/23.0 °C, at 105 kPa; condenser water pump 80 kW; compressor motor 90 % efficient with an input of 583 kW. Find the plant duty, positional efficiency, overall COP, heat rejected in the tower, Carnot COP and overall cycle efficiency.</p>
+<h3 id="hand-solution-2">Hand solution<a class="hl" href="#hand-solution-2" aria-label="Link to this section">¶</a></h3>
+<div class="eq"><div>From the 105 kPa chart: S_in = 89.1, S_out = 64.9 kJ/kg, v = 0.872 m³/kg, so m = 50 / 0.872 = 57.3 kg/s</div><div>Coil duty = 57.3 × (89.1 − 64.9) = 1 385 kW</div><div>Plant duty = 1 385 + 60 + 160 + 95 = 1 700 kW; positional efficiency = 1 385 / 1 700 = 81.5 %</div><div>Overall COP = 1 700 / 583 = 2.9</div><div>Heat rejected = 1 700 + 0.9 × 583 + 80 + 60 = 2 365 kW</div><div>Carnot COP = (273.15 + 5.9) / (46.1 − 5.9) = 6.9; overall cycle efficiency = 2.9 / 6.9 = 42 %</div></div>
+<div class="ans"><b>Answer:</b> 1 700 kW; 81.5 %; 2.9; 2 365 kW; 6.9; 42 %.</div>
+<h3 id="with-asm-lab-2">With ASM Lab<a class="hl" href="#with-asm-lab-2" aria-label="Link to this section">¶</a></h3>
+<h4 class="task" id="task-the-coil-side-with-the-psychrometric-calculator">Task: The coil side with the psychrometric calculator</h4>
+<ol><li><b>Psychrometry</b> at 105 kPa: 35/29 °C and 23/23 °C.</li><li>The rest follows from the coil duty as above.</li></ol>
+<table><thead><tr><th>Quantity</th><th>Memo</th><th>ASM Lab</th><th>Error</th></tr></thead><tbody><tr><td>Sigma heat into the coil (kJ/kg)</td><td>89.1</td><td>89.1</td><td>0.02 %</td></tr><tr><td>Sigma heat out of the coil (kJ/kg)</td><td>64.9</td><td>64.9</td><td>0.03 %</td></tr><tr><td>Specific volume (m³/kg)</td><td>0.872</td><td>0.872</td><td>0.03 %</td></tr><tr><td>Coil duty (kW)</td><td>1 385</td><td>1 385</td><td>0.01 %</td></tr><tr><td>Plant duty (kW)</td><td>1 700</td><td>1 700</td><td>0.01 %</td></tr><tr><td>Positional efficiency (%)</td><td>81.5</td><td>81.5</td><td>0.04 %</td></tr><tr><td>Overall COP</td><td>2.90</td><td>2.92</td><td>0.54 %</td></tr><tr><td>Heat rejected in the tower (kW)</td><td>2 365</td><td>2 365</td><td>0.02 %</td></tr><tr><td>Carnot COP</td><td>6.90</td><td>6.94</td><td>0.60 %</td></tr><tr><td>Overall cycle efficiency (%)</td><td>42.0</td><td>42.0</td><td>0.01 %</td></tr></tbody></table>
+<div class="note"><b>Note:</b> Questions read off a refrigerant pressure-enthalpy chart (self-study problem 2) are not repeated here: ASM Lab has no refrigerant tables, so it can only repeat the arithmetic once the enthalpies are read off the chart.</div>
+<h2 id="summary-of-the-errors">Summary of the errors<a class="hl" href="#summary-of-the-errors" aria-label="Link to this section">¶</a></h2>
+<table><thead><tr><th>Compared values</th><th>Minimum error</th><th>Median error</th><th>Maximum error</th></tr></thead><tbody><tr><td>17</td><td>0.01 %</td><td>0.03 %</td><td>0.60 % (Carnot COP)</td></tr></tbody></table>
+<div class="mpn"><a href="../../manual/ex-psychrometry/">Previous: Worked examples: psychrometry and heat</a><span></span></div>
+<footer class="mfoot">ASM Lab 1.45 documentation · <a href="../../">ASM Lab website</a> · <a href="../../docs/">All guides and PDFs</a> · <a href="../../bugs/">Report a problem with this page</a></footer>
+</main>
+</div>
+<script>window.ASM_ROOT="../../"</script>
+<script src="../../config.js"></script>
+<script src="../../app.js"></script>
+<script src="../../manual.js"></script>
+</body>
+</html>

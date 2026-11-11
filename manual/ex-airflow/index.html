@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Worked examples: airflow, pressure and regulators — ASM Lab 1.45 documentation</title>
+<meta name="description" content="Course questions on pitot tubes, airways in parallel, regulators and booster fans, solved by hand and with the ASM Lab network solver, with the error against the memo.">
+<link rel="canonical" href="https://respectmasithulela260-coder.github.io/asm-lab/manual/ex-airflow/">
+<meta property="og:site_name" content="ASM Lab">
+<link rel="icon" type="image/svg+xml" href="../../logo.svg">
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="../../manual.css">
+<script>try{if(innerWidth>=1100&&localStorage.getItem("asm-manual-toc")!=="closed")document.documentElement.className="toc-open"}catch(e){if(innerWidth>=1100)document.documentElement.className="toc-open"}</script>
+</head>
+<body class="manual">
+<canvas id="air" aria-hidden="true"></canvas>
+<header class="bar">
+  <a class="brand" href="../../"><img src="../../logo.svg" alt="" width="30" height="30">ASM Lab</a>
+  <nav><a href="../../demo/">Demo</a><a href="../../whats-new/">What's new</a><a href="../../docs/">Docs</a><a href="../../manual/" class="here" aria-current="page">Manual</a><a href="../../tutorials/">Tutorials</a><a href="../../licences/">Licences</a><a href="../../bugs/">Bugs</a><a class="cta" href="../../download/">Download</a></nav>
+</header>
+<nav class="mtoc" aria-label="Contents">
+  <a class="mlogo" href="../../manual/"><img src="../../logo.svg" alt="" width="34" height="34"><span>ASM Lab</span><small>1.45</small></a>
+  <ul class="mtree"><li class=" open"><a href="../../manual/"><span class="tw">▾</span>ASM Lab documentation</a><ul><li class=""><a href="../../manual/introduction/"><span class="tw">▸</span>Introduction</a></li><li class=""><a href="../../manual/interface/"><span class="tw">▸</span>The ASM Lab interface</a></li><li class=""><a href="../../manual/files/"><span class="tw"></span>File handling</a></li><li class=""><a href="../../manual/settings/"><span class="tw"></span>Settings</a></li><li class=""><a href="../../manual/first-mine/"><span class="tw"></span>Drawing your first mine</a></li><li class="here open"><a href="../../manual/ex-airflow/"><span class="tw">▸</span>Worked examples: airflow, pressure and regulators</a><ul><li><a href="#pitot-tube-in-an-air-pipe"><span class="tw"></span>Pitot tube in an air pipe</a></li><li><a href="#two-crosscuts-in-parallel-doors-regulator-and-booster-fan"><span class="tw"></span>Two crosscuts in parallel: doors, regulator and booster fan</a></li><li><a href="#summary-of-the-errors"><span class="tw"></span>Summary of the errors</a></li></ul></li><li class=""><a href="../../manual/ex-fans/"><span class="tw">▸</span>Worked examples: fans</a></li><li class=""><a href="../../manual/ex-psychrometry/"><span class="tw">▸</span>Worked examples: psychrometry and heat</a></li><li class=""><a href="../../manual/ex-refrigeration/"><span class="tw">▸</span>Worked examples: refrigeration and cooling</a></li></ul></li></ul>
+  <div class="mside-links"><a href="../../">ASM Lab website</a><a href="../../download/">Download</a><a href="../../docs/">PDF guides</a></div>
+</nav>
+<div class="mright">
+<header class="mbar">
+  <input id="msearch" type="search" placeholder="Search the manual" aria-label="Search the manual" autocomplete="off">
+  <div id="mresults" hidden></div>
+</header>
+<button class="mtoggle" type="button" aria-label="Show or hide the contents">⇄</button>
+<main class="mdoc">
+<h1 id="worked-examples-airflow-pressure-and-regulators">Worked examples: airflow, pressure and regulators</h1>
+<p>The questions come from the MINN3019A mine ventilation course (tutorials, class calculations, self-study problems and lecture slides). Each one is set out as the question, the hand solution as in the memo, and then the same question answered with ASM Lab, with the difference from the memo. Memo values read off psychrometric charts carry the chart's reading accuracy, about 0.3 kJ/kg on sigma heat and 0.2 °C on a temperature, so differences of that size are reading differences, not errors.</p>
+<h2 id="pitot-tube-in-an-air-pipe">Pitot tube in an air pipe<a class="hl" href="#pitot-tube-in-an-air-pipe" aria-label="Link to this section">¶</a></h2>
+<p>Tutorial 1, question 2.</p>
+<p>A pitot tube is installed at the midpoint of a 250 mm air pipe. The velocity pressure measured on a manometer is 8 mm water and the static pressure 6 mm water. The air temperature is 21 °C and the barometric pressure 744 mm mercury. The flow is turbulent and the average velocity is 82 % of the velocity at the centre of the pipe. Calculate the volume flow and the mass flow of the air. Take g = 9.79 m/s², mercury 13 550 kg/m³ and water 1 000 kg/m³, and treat air as an ideal gas.</p>
+<h3 id="hand-solution">Hand solution<a class="hl" href="#hand-solution" aria-label="Link to this section">¶</a></h3>
+<p>The barometric pressure and the density of (dry) air:</p>
+<div class="eq"><div>p = ρ_Hg g h = 13 550 × 9.79 × 0.744 = 98 692 Pa</div><div>ρ = p / (R T) = 98 692 / (287 × 294.15) = 1.17 kg/m³</div></div>
+<p>The velocity pressure and the centre-line velocity:</p>
+<div class="eq"><div>VP = ρ_w g h = 1 000 × 9.79 × 0.008 = 78.3 Pa</div><div>u = √(2 VP / ρ) = √(2 × 78.3 / 1.17) = 11.6 m/s</div></div>
+<p>The average velocity, the volume flow and the mass flow:</p>
+<div class="eq"><div>u_avg = 0.82 × 11.6 = 9.5 m/s</div><div>Q = u_avg × π D² / 4 = 9.5 × 0.049 = 0.465 m³/s</div><div>m = ρ Q = 1.17 × 0.5 = 0.585 kg/s (the memo rounds Q to 0.5 first)</div></div>
+<div class="ans"><b>Answer:</b> Q = 0.465 m³/s (say 0.5 m³/s); m = 0.585 kg/s in the memo.</div>
+<h3 id="with-asm-lab">With ASM Lab<a class="hl" href="#with-asm-lab" aria-label="Link to this section">¶</a></h3>
+<h4 class="task" id="task-answer-it-with-the-calculators">Task: Answer it with the calculators</h4>
+<ol><li>Open <b>Tools &gt; Calculators</b> and choose <b>Psychrometry</b>. Enter 98.69 kPa, a dry bulb of 21 °C and a relative humidity of 0 %. The dry-air density is 1.169 kg/m³.</li><li>Choose <b>Velocity pressure</b>. Enter the density and change the velocity until the velocity pressure reads 78.3 Pa: 11.58 m/s.</li><li>The rest is the area and the 0.82 factor: Q = 0.466 m³/s, m = 0.545 kg/s.</li></ol>
+<table><thead><tr><th>Quantity</th><th>Memo</th><th>ASM Lab</th><th>Error</th></tr></thead><tbody><tr><td>Air density (kg/m³)</td><td>1.170</td><td>1.169</td><td>0.09 %</td></tr><tr><td>Centre-line velocity (m/s)</td><td>11.60</td><td>11.58</td><td>0.21 %</td></tr><tr><td>Average velocity (m/s)</td><td>9.50</td><td>9.49</td><td>0.08 %</td></tr><tr><td>Volume flow (m³/s)</td><td>0.465</td><td>0.466</td><td>0.21 %</td></tr><tr><td>Mass flow (kg/s)</td><td>0.585</td><td>0.545</td><td>6.90 %</td></tr></tbody></table>
+<div class="note"><b>Note:</b> The mass flow differs by 7 % because the memo multiplies by Q rounded to 0.5 m³/s. With the unrounded 0.465 m³/s the hand answer is 1.17 × 0.465 = 0.544 kg/s, the same as ASM Lab.</div>
+<h2 id="two-crosscuts-in-parallel-doors-regulator-and-booster-fan">Two crosscuts in parallel: doors, regulator and booster fan<a class="hl" href="#two-crosscuts-in-parallel-doors-regulator-and-booster-fan" aria-label="Link to this section">¶</a></h2>
+<p>Class calculations 1, question 1.</p>
+<p>Two crosscuts lead from a sub-vertical shaft to a stoping section. The upper crosscut AD is 3.0 m × 3.0 m and 400 m long. All the air, 80 m³/s, now flows in the lower crosscut ABCD, and the pressure across the doors in the upper crosscut is 1.05 kPa. The air density is 1.25 kg/m³.</p>
+<ol><li>What quantity flows in each crosscut if the doors are left open?</li><li>What size of regulator in the upper crosscut sends 60 m³/s through ABCD?</li><li>Keeping the pressure available unchanged, what booster fan in the lower crosscut keeps 20 m³/s in the upper one?</li></ol>
+<h3 id="hand-solution-2">Hand solution<a class="hl" href="#hand-solution-2" aria-label="Link to this section">¶</a></h3>
+<p>The resistance of ABCD at the prevailing density, from the door pressure, and of AD from its size with an assumed k-factor of 0.018 Ns²/m⁴:</p>
+<div class="eq"><div>R_ABCD = p / Q² = 1 050 / 80² = 0.1641 Ns²/m⁸</div><div>R_AD = k C L / A³ = 0.018 × 12 × 400 / 9³ = 0.11852 Ns²/m⁸</div></div>
+<p>(a) With the doors open the two are in parallel:</p>
+<div class="eq"><div>1/√R_T = 1/√0.11852 + 1/√0.1641, so R_T = 0.03464 Ns²/m⁸</div><div>p = R_T Q² = 0.03464 × 80² = 221.7 Pa</div><div>Q_AD = √(p / R_AD) = √(221.7 / 0.11852) = 43.25 m³/s; Q_ABCD = 80 − 43.25 = 36.75 m³/s</div></div>
+<p>(b) For 60 m³/s in ABCD the circuit needs R_ABCD × 60² = 591 Pa, while 20 m³/s in AD uses only R_AD × 20² = 47.4 Pa. The regulator takes the difference, 543.6 Pa:</p>
+<div class="eq"><div>A = 1.2 Q √(ρ / p) = 1.2 × 20 × √(1.25 / 543.6) = 1.15 m²</div></div>
+<p>(c) Keeping 221.7 Pa across the circuit, the regulator now takes 221.7 − 47.4 = 174.3 Pa (A = 2.03 m²) and a booster in ABCD supplies the rest of the 591 Pa:</p>
+<div class="eq"><div>p_booster = 591 − 221.7 = 369.3 Pa at 60 m³/s</div></div>
+<div class="ans"><b>Answer:</b> (a) 43.3 and 36.8 m³/s; (b) a 1.2 m² regulator; (c) a 2 m² regulator and a booster of 60 m³/s at 369 Pa.</div>
+<h3 id="with-asm-lab-2">With ASM Lab<a class="hl" href="#with-asm-lab-2" aria-label="Link to this section">¶</a></h3>
+<h4 class="task" id="task-build-the-two-crosscuts-as-a-network">Task: Build the two crosscuts as a network</h4>
+<ol><li>Draw the two crosscuts between the same two nodes and give them the resistances above in the <b>Inspect</b> panel (Resistance override).</li><li>(a) Put a fan set to <b>Fixed quantity</b>, 80 m³/s, on the shaft airway and press <b>F5</b>. The solver splits the air: 43.24 m³/s in AD and 36.76 m³/s in ABCD, at 221.6 Pa.</li><li>(b) Add a regulator to AD in <b>target pressure drop</b> mode with 543.6 Pa. ASM Lab sizes it at 1.151 m². Set that area, solve again, and ABCD carries 60.00 m³/s.</li><li>(c) Set the shaft to a fixed pressure difference of 221.7 Pa, give AD a regulator of 2.03 m² and put a <b>Fixed quantity</b> booster of 60 m³/s in ABCD. The solver reports the booster pressure, 369.0 Pa, with 20.00 m³/s left in AD.</li></ol>
+<table><thead><tr><th>Quantity</th><th>Memo</th><th>ASM Lab</th><th>Error</th></tr></thead><tbody><tr><td>Q in AD, doors open (m³/s)</td><td>43.25</td><td>43.24</td><td>0.01 %</td></tr><tr><td>Q in ABCD, doors open (m³/s)</td><td>36.75</td><td>36.76</td><td>0.01 %</td></tr><tr><td>Pressure across the circuit (Pa)</td><td>221.7</td><td>221.6</td><td>0.03 %</td></tr><tr><td>Regulator for 60 m³/s in ABCD (m²)</td><td>1.15</td><td>1.15</td><td>0.11 %</td></tr><tr><td>Regulator with the booster (m²)</td><td>2.03</td><td>2.03</td><td>0.14 %</td></tr><tr><td>Booster fan pressure (Pa)</td><td>369.3</td><td>369.0</td><td>0.08 %</td></tr></tbody></table>
+<h2 id="summary-of-the-errors">Summary of the errors<a class="hl" href="#summary-of-the-errors" aria-label="Link to this section">¶</a></h2>
+<table><thead><tr><th>Compared values</th><th>Minimum error</th><th>Median error</th><th>Maximum error</th></tr></thead><tbody><tr><td>11</td><td>0.01 %</td><td>0.09 %</td><td>6.90 % (Mass flow)</td></tr></tbody></table>
+<div class="mpn"><a href="../../manual/first-mine/">Previous: Drawing your first mine</a><a href="../../manual/ex-fans/">Next: Worked examples: fans</a></div>
+<footer class="mfoot">ASM Lab 1.45 documentation · <a href="../../">ASM Lab website</a> · <a href="../../docs/">All guides and PDFs</a> · <a href="../../bugs/">Report a problem with this page</a></footer>
+</main>
+</div>
+<script>window.ASM_ROOT="../../"</script>
+<script src="../../config.js"></script>
+<script src="../../app.js"></script>
+<script src="../../manual.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The ASM Lab interface — ASM Lab 1.45 documentation</title>
+<meta name="description" content="The areas of the window: menus, the ribbon and its tabs, the left and right side bars, the 3D view and its keys, and the solver log and status bar.">
+<link rel="canonical" href="https://respectmasithulela260-coder.github.io/asm-lab/manual/interface/">
+<meta property="og:site_name" content="ASM Lab">
+<link rel="icon" type="image/svg+xml" href="../../logo.svg">
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="../../manual.css">
+<script>try{if(innerWidth>=1100&&localStorage.getItem("asm-manual-toc")!=="closed")document.documentElement.className="toc-open"}catch(e){if(innerWidth>=1100)document.documentElement.className="toc-open"}</script>
+</head>
+<body class="manual">
+<canvas id="air" aria-hidden="true"></canvas>
+<header class="bar">
+  <a class="brand" href="../../"><img src="../../logo.svg" alt="" width="30" height="30">ASM Lab</a>
+  <nav><a href="../../demo/">Demo</a><a href="../../whats-new/">What's new</a><a href="../../docs/">Docs</a><a href="../../manual/" class="here" aria-current="page">Manual</a><a href="../../tutorials/">Tutorials</a><a href="../../licences/">Licences</a><a href="../../bugs/">Bugs</a><a class="cta" href="../../download/">Download</a></nav>
+</header>
+<nav class="mtoc" aria-label="Contents">
+  <a class="mlogo" href="../../manual/"><img src="../../logo.svg" alt="" width="34" height="34"><span>ASM Lab</span><small>1.45</small></a>
+  <ul class="mtree"><li class=" open"><a href="../../manual/"><span class="tw">▾</span>ASM Lab documentation</a><ul><li class=""><a href="../../manual/introduction/"><span class="tw">▸</span>Introduction</a></li><li class="here open"><a href="../../manual/interface/"><span class="tw">▸</span>The ASM Lab interface</a><ul><li><a href="#the-ribbon"><span class="tw"></span>The ribbon</a></li><li><a href="#the-left-side-bar"><span class="tw"></span>The left side bar</a></li><li><a href="#the-right-side-bar"><span class="tw"></span>The right side bar</a></li><li><a href="#the-3d-view"><span class="tw"></span>The 3D view</a></li><li><a href="#solver-log-and-status-bar"><span class="tw"></span>Solver log and status bar</a></li></ul></li><li class=""><a href="../../manual/files/"><span class="tw"></span>File handling</a></li><li class=""><a href="../../manual/settings/"><span class="tw"></span>Settings</a></li><li class=""><a href="../../manual/first-mine/"><span class="tw"></span>Drawing your first mine</a></li><li class=""><a href="../../manual/ex-airflow/"><span class="tw">▸</span>Worked examples: airflow, pressure and regulators</a></li><li class=""><a href="../../manual/ex-fans/"><span class="tw">▸</span>Worked examples: fans</a></li><li class=""><a href="../../manual/ex-psychrometry/"><span class="tw">▸</span>Worked examples: psychrometry and heat</a></li><li class=""><a href="../../manual/ex-refrigeration/"><span class="tw">▸</span>Worked examples: refrigeration and cooling</a></li></ul></li></ul>
+  <div class="mside-links"><a href="../../">ASM Lab website</a><a href="../../download/">Download</a><a href="../../docs/">PDF guides</a></div>
+</nav>
+<div class="mright">
+<header class="mbar">
+  <input id="msearch" type="search" placeholder="Search the manual" aria-label="Search the manual" autocomplete="off">
+  <div id="mresults" hidden></div>
+</header>
+<button class="mtoggle" type="button" aria-label="Show or hide the contents">⇄</button>
+<main class="mdoc">
+<h1 id="the-asm-lab-interface">The ASM Lab interface</h1>
+<p>When a model is open, the ASM Lab window has these areas:</p>
+<ol><li><b>Menus:</b> File, Edit, Mine and View.</li><li><b>Ribbon:</b> the tabs Home, Design, Duct and Network, each with groups of buttons.</li><li><b>Top bar:</b> undo and redo, display modes, the 3D and 2D stope solvers, Downloads, Help, Report bug and Settings.</li><li><b>Left side bar:</b> Outliner, Drawing pen, Colour and Clip.</li><li><b>3D view:</b> the mine, with the view tools down its left edge.</li><li><b>Right side bar:</b> Inspect, Draw, Network, Solve, Thermal, ASM Assistant and Script.</li><li><b>Solver log and status bar:</b> at the bottom of the window.</li></ol>
+<figure><div class="shot">Screenshot 2: The whole ASM Lab window with a sample mine open, numbered 1 to 7 to match the list above.</div><figcaption>Figure 2: The whole ASM Lab window with a sample mine open, numbered 1 to 7 to match the list above</figcaption></figure>
+<h2 id="the-ribbon">The ribbon<a class="hl" href="#the-ribbon" aria-label="Link to this section">¶</a></h2>
+<p>The ribbon holds the commands you use most, grouped by what they do. The Home tab is where you draw, edit and solve. This chapter introduces the ribbon; each button is described where it is used in the chapters that follow.</p>
+<table><thead><tr><th>Tab</th><th>Groups and what they hold</th></tr></thead><tbody><tr><td>Home</td><td>Create (Draw tunnel, Curved tunnel, Add shaft, Place fan, Add regulator, Add wall, Refuge bay, Add cooler); Edit (Duplicate, Merge nodes, Delete, Add node, Remove node, Fillet, Extend); Simulate (Check, Fan curves, Report, Fire, Air use, Charts, Library); Solve; Navigate; Display (Colour by, Label by).</td></tr><tr><td>Design</td><td>Create: Split (cut an airway at a point), Add stope, Add door / airlock.</td></tr><tr><td>Duct</td><td>Auxiliary ventilation: ducts, duct fans, size changes and evasés, with the duct's own 3D and 2D views.</td></tr><tr><td>Network</td><td>Boundaries (Intake, Exhaust), fans (Main fan, Booster, Auxiliary), topology, the network report and exports.</td></tr></tbody></table>
+<div class="note"><b>Note:</b> <b>Hide ribbon</b>, at the right end of the ribbon, gives the 3D view more room; click a tab to bring the ribbon back.</div>
+<figure><div class="shot">Screenshot 3: The ribbon's Home tab, with the Create, Edit, Simulate, Solve, Navigate and Display groups labelled.</div><figcaption>Figure 3: The ribbon's Home tab, with the Create, Edit, Simulate, Solve, Navigate and Display groups labelled</figcaption></figure>
+<h4 class="task" id="task-show-and-hide-the-ribbon">Task: Show and hide the ribbon</h4>
+<ol><li>Click <b>Hide ribbon</b> at the right end of the ribbon. The ribbon closes and the 3D view grows.</li><li>Click the <b>Home</b> tab to open the ribbon again.</li></ol>
+<h2 id="the-left-side-bar">The left side bar<a class="hl" href="#the-left-side-bar" aria-label="Link to this section">¶</a></h2>
+<table><thead><tr><th>Panel</th><th>What it is for</th></tr></thead><tbody><tr><td>Outliner</td><td>Everything in the project: files, block models and collections (levels). Show, hide, rename, lock or delete them, and choose which collection new drawing goes into.</td></tr><tr><td>Drawing pen</td><td>Drawing settings, such as the working elevation new points are drawn at.</td></tr><tr><td>Colour</td><td>Colours for drawings, layers and block models.</td></tr><tr><td>Clip</td><td>Six cutting planes to slice into the model, for looking inside a level or an orebody.</td></tr></tbody></table>
+<figure><div class="shot">Screenshot 4: The left side bar with the Outliner open, showing a collection and a block model.</div><figcaption>Figure 4: The left side bar with the Outliner open, showing a collection and a block model</figcaption></figure>
+<h2 id="the-right-side-bar">The right side bar<a class="hl" href="#the-right-side-bar" aria-label="Link to this section">¶</a></h2>
+<table><thead><tr><th>Panel</th><th>What it is for</th></tr></thead><tbody><tr><td>Inspect</td><td>The properties of what you selected: an airway's size, shape, friction factor and device, a node's position and boundary, and their results after a solve.</td></tr><tr><td>Draw</td><td>Drawing by typing coordinates, and other drawing dialogues.</td></tr><tr><td>Network</td><td>Boundaries and the network checks (loose ends, gaps, disconnected parts).</td></tr><tr><td>Solve</td><td>Solver settings and the latest solve.</td></tr><tr><td>Thermal</td><td>Heat sources and thermal settings for the selected airway or the whole model.</td></tr><tr><td>ASM Assistant</td><td>The chat assistant that can draw, solve and explain the model.</td></tr><tr><td>Script</td><td>The script editor and the list of script functions.</td></tr></tbody></table>
+<figure><div class="shot">Screenshot 5: The right side bar with the Inspect panel showing a selected airway and its simulation results.</div><figcaption>Figure 5: The right side bar with the Inspect panel showing a selected airway and its simulation results</figcaption></figure>
+<h2 id="the-3d-view">The 3D view<a class="hl" href="#the-3d-view" aria-label="Link to this section">¶</a></h2>
+<p>The 3D view shows the model. The tools down its left edge fit everything in the view, reset it, and switch the grid, labels, flow arrows and flow animation.</p>
+<table><thead><tr><th>Key</th><th>View</th></tr></thead><tbody><tr><td>7</td><td>Top</td></tr><tr><td>1</td><td>Front</td></tr><tr><td>3</td><td>Right</td></tr><tr><td>0</td><td>Isometric</td></tr><tr><td>.</td><td>Frame everything</td></tr><tr><td>5</td><td>Perspective or orthographic</td></tr></tbody></table>
+<h2 id="solver-log-and-status-bar">Solver log and status bar<a class="hl" href="#solver-log-and-status-bar" aria-label="Link to this section">¶</a></h2>
+<p>The <b>status bar</b> at the bottom says what ASM Lab is doing and which collection you are drawing in. The <b>solver log</b> above it reports each solve: whether it converged, and any warnings. Click <b>Show</b> to open the full log.</p>
+<figure><div class="shot">Screenshot 6: The bottom of the window after a solve: the status bar and the solver log showing Converged.</div><figcaption>Figure 6: The bottom of the window after a solve: the status bar and the solver log showing Converged</figcaption></figure>
+<div class="mpn"><a href="../../manual/introduction/">Previous: Introduction</a><a href="../../manual/files/">Next: File handling</a></div>
+<footer class="mfoot">ASM Lab 1.45 documentation · <a href="../../">ASM Lab website</a> · <a href="../../docs/">All guides and PDFs</a> · <a href="../../bugs/">Report a problem with this page</a></footer>
+</main>
+</div>
+<script>window.ASM_ROOT="../../"</script>
+<script src="../../config.js"></script>
+<script src="../../app.js"></script>
+<script src="../../manual.js"></script>
+</body>
+</html>

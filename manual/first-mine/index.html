@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Drawing your first mine — ASM Lab 1.45 documentation</title>
+<meta name="description" content="Step by step from an empty project to a solved mine: an intake shaft, a level, a return shaft with a main fan, boundaries, checking, solving, reading the results and saving.">
+<link rel="canonical" href="https://respectmasithulela260-coder.github.io/asm-lab/manual/first-mine/">
+<meta property="og:site_name" content="ASM Lab">
+<link rel="icon" type="image/svg+xml" href="../../logo.svg">
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="../../manual.css">
+<script>try{if(innerWidth>=1100&&localStorage.getItem("asm-manual-toc")!=="closed")document.documentElement.className="toc-open"}catch(e){if(innerWidth>=1100)document.documentElement.className="toc-open"}</script>
+</head>
+<body class="manual">
+<canvas id="air" aria-hidden="true"></canvas>
+<header class="bar">
+  <a class="brand" href="../../"><img src="../../logo.svg" alt="" width="30" height="30">ASM Lab</a>
+  <nav><a href="../../demo/">Demo</a><a href="../../whats-new/">What's new</a><a href="../../docs/">Docs</a><a href="../../manual/" class="here" aria-current="page">Manual</a><a href="../../tutorials/">Tutorials</a><a href="../../licences/">Licences</a><a href="../../bugs/">Bugs</a><a class="cta" href="../../download/">Download</a></nav>
+</header>
+<nav class="mtoc" aria-label="Contents">
+  <a class="mlogo" href="../../manual/"><img src="../../logo.svg" alt="" width="34" height="34"><span>ASM Lab</span><small>1.45</small></a>
+  <ul class="mtree"><li class=" open"><a href="../../manual/"><span class="tw">▾</span>ASM Lab documentation</a><ul><li class=""><a href="../../manual/introduction/"><span class="tw">▸</span>Introduction</a></li><li class=""><a href="../../manual/interface/"><span class="tw">▸</span>The ASM Lab interface</a></li><li class=""><a href="../../manual/files/"><span class="tw"></span>File handling</a></li><li class=""><a href="../../manual/settings/"><span class="tw"></span>Settings</a></li><li class="here open"><a href="../../manual/first-mine/"><span class="tw"></span>Drawing your first mine</a></li><li class=""><a href="../../manual/ex-airflow/"><span class="tw">▸</span>Worked examples: airflow, pressure and regulators</a></li><li class=""><a href="../../manual/ex-fans/"><span class="tw">▸</span>Worked examples: fans</a></li><li class=""><a href="../../manual/ex-psychrometry/"><span class="tw">▸</span>Worked examples: psychrometry and heat</a></li><li class=""><a href="../../manual/ex-refrigeration/"><span class="tw">▸</span>Worked examples: refrigeration and cooling</a></li></ul></li></ul>
+  <div class="mside-links"><a href="../../">ASM Lab website</a><a href="../../download/">Download</a><a href="../../docs/">PDF guides</a></div>
+</nav>
+<div class="mright">
+<header class="mbar">
+  <input id="msearch" type="search" placeholder="Search the manual" aria-label="Search the manual" autocomplete="off">
+  <div id="mresults" hidden></div>
+</header>
+<button class="mtoggle" type="button" aria-label="Show or hide the contents">⇄</button>
+<main class="mdoc">
+<h1 id="drawing-your-first-mine">Drawing your first mine</h1>
+<p>In this chapter you draw a small mine from nothing: an intake shaft, a level with two drives, a return shaft with a main fan. Then you solve it and read the results. It takes about fifteen minutes.</p>
+<h4 class="task" id="task-start-a-new-project">Task: Start a new project</h4>
+<ol><li>Start ASM Lab. On the start screen, click <b>New model</b>.</li><li>A new, empty collection is made and the 3D view shows the grid.</li></ol>
+<figure><div class="shot">Screenshot 9: The start screen with New model highlighted.</div><figcaption>Figure 9: The start screen with New model highlighted</figcaption></figure>
+<h4 class="task" id="task-draw-the-intake-shaft">Task: Draw the intake shaft</h4>
+<ol><li>Click <b>Home &gt; Create &gt; Add shaft</b>.</li><li>A shaft is drawn like a tunnel, with two clicks: click the top of the shaft, move the cursor down (a trail shows the shaft) and click its bottom.</li><li>In the <b>Inspect</b> panel, check the shaft's diameter and friction factor.</li></ol>
+<figure><div class="shot">Screenshot 10: A shaft just drawn and selected, with its properties in the Inspect panel.</div><figcaption>Figure 10: A shaft just drawn and selected, with its properties in the Inspect panel</figcaption></figure>
+<h4 class="task" id="task-draw-the-level">Task: Draw the level</h4>
+<ol><li>Open the <b>Drawing pen</b> on the left side bar and set the <b>Working elevation</b> to the depth of the bottom of the shaft.</li><li>Click <b>Home &gt; Create &gt; Draw tunnel</b>, or press <b>A</b>.</li><li>Click the bottom of the shaft to start, then click each point along the drive. Each click adds a node; points snap to the grid and to existing nodes.</li><li>Right-click to finish the drive.</li><li>Draw the second drive in the same way, from the end of the first to where the return shaft will be.</li><li>Select a drive and set its width, height and shape in the <b>Inspect</b> panel.</li></ol>
+<figure><div class="shot">Screenshot 11: Drawing a drive: the clicked points and the preview line to the cursor.</div><figcaption>Figure 11: Drawing a drive: the clicked points and the preview line to the cursor</figcaption></figure>
+<h4 class="task" id="task-draw-the-return-shaft-and-add-the-main-fan">Task: Draw the return shaft and add the main fan</h4>
+<ol><li>Draw a second shaft from the end of the level up to the surface.</li><li>Click <b>Home &gt; Create &gt; Place fan</b> and choose <b>Main fan</b>.</li><li>Click the return shaft. An arrow shows the direction the fan blows; click the side the air goes to, towards the surface for an exhausting fan.</li><li>In the <b>Inspect</b> panel, choose a fan from the library or enter its curve.</li></ol>
+<figure><div class="shot">Screenshot 12: The main fan on the return shaft with its direction arrow.</div><figcaption>Figure 12: The main fan on the return shaft with its direction arrow</figcaption></figure>
+<h4 class="task" id="task-set-the-intake-and-exhaust">Task: Set the intake and exhaust</h4>
+<ol><li>Click <b>Network &gt; Intake</b> and click the top node of the intake shaft.</li><li>Click <b>Network &gt; Exhaust</b> and click the top node of the return shaft.</li></ol>
+<h4 class="task" id="task-check-and-solve">Task: Check and solve</h4>
+<ol><li>Click <b>Home &gt; Simulate &gt; Check</b>. ASM Lab lists anything that would stop a solve, such as a loose end or a missing boundary. Fix each one.</li><li>Press <b>F5</b>, or click <b>Solve</b>.</li><li>The solver log reports <b>Converged</b>.</li></ol>
+<figure><div class="shot">Screenshot 13: The Check window with no problems, and the solver log after a converged solve.</div><figcaption>Figure 13: The Check window with no problems, and the solver log after a converged solve</figcaption></figure>
+<h4 class="task" id="task-read-the-results">Task: Read the results</h4>
+<ol><li>In <b>Display</b>, set <b>Colour by</b> to <b>Velocity</b>. The legend shows the range.</li><li>Click an airway. The <b>Inspect</b> panel shows its flow, pressure drop, velocity and velocity pressure under Simulation Results.</li><li>Click the fan's airway to see the fan's operating point: flow, total and static pressure, air and shaft power and efficiency.</li><li>Click the <b>play</b> button on the left of the 3D view to watch the air move.</li></ol>
+<figure><div class="shot">Screenshot 14: The solved mine coloured by velocity, with an airway selected and its results in the Inspect panel.</div><figcaption>Figure 14: The solved mine coloured by velocity, with an airway selected and its results in the Inspect panel</figcaption></figure>
+<h4 class="task" id="task-save-the-mine">Task: Save the mine</h4>
+<ol><li>Choose <b>File &gt; Save</b> and name the project <b>My first mine</b>.</li></ol>
+<p>You have drawn, solved and saved a mine. The next chapters describe each part of ASM Lab in more detail.</p>
+<div class="mpn"><a href="../../manual/settings/">Previous: Settings</a><a href="../../manual/ex-airflow/">Next: Worked examples: airflow, pressure and regulators</a></div>
+<footer class="mfoot">ASM Lab 1.45 documentation · <a href="../../">ASM Lab website</a> · <a href="../../docs/">All guides and PDFs</a> · <a href="../../bugs/">Report a problem with this page</a></footer>
+</main>
+</div>
+<script>window.ASM_ROOT="../../"</script>
+<script src="../../config.js"></script>
+<script src="../../app.js"></script>
+<script src="../../manual.js"></script>
+</body>
+</html>

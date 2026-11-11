@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Worked examples: fans — ASM Lab 1.45 documentation</title>
+<meta name="description" content="Course questions on main fan duty, the fan laws, density changes and evasés, solved by hand and with ASM Lab, with fan charts and the error against the memo.">
+<link rel="canonical" href="https://respectmasithulela260-coder.github.io/asm-lab/manual/ex-fans/">
+<meta property="og:site_name" content="ASM Lab">
+<link rel="icon" type="image/svg+xml" href="../../logo.svg">
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="../../manual.css">
+<script>try{if(innerWidth>=1100&&localStorage.getItem("asm-manual-toc")!=="closed")document.documentElement.className="toc-open"}catch(e){if(innerWidth>=1100)document.documentElement.className="toc-open"}</script>
+</head>
+<body class="manual">
+<canvas id="air" aria-hidden="true"></canvas>
+<header class="bar">
+  <a class="brand" href="../../"><img src="../../logo.svg" alt="" width="30" height="30">ASM Lab</a>
+  <nav><a href="../../demo/">Demo</a><a href="../../whats-new/">What's new</a><a href="../../docs/">Docs</a><a href="../../manual/" class="here" aria-current="page">Manual</a><a href="../../tutorials/">Tutorials</a><a href="../../licences/">Licences</a><a href="../../bugs/">Bugs</a><a class="cta" href="../../download/">Download</a></nav>
+</header>
+<nav class="mtoc" aria-label="Contents">
+  <a class="mlogo" href="../../manual/"><img src="../../logo.svg" alt="" width="34" height="34"><span>ASM Lab</span><small>1.45</small></a>
+  <ul class="mtree"><li class=" open"><a href="../../manual/"><span class="tw">▾</span>ASM Lab documentation</a><ul><li class=""><a href="../../manual/introduction/"><span class="tw">▸</span>Introduction</a></li><li class=""><a href="../../manual/interface/"><span class="tw">▸</span>The ASM Lab interface</a></li><li class=""><a href="../../manual/files/"><span class="tw"></span>File handling</a></li><li class=""><a href="../../manual/settings/"><span class="tw"></span>Settings</a></li><li class=""><a href="../../manual/first-mine/"><span class="tw"></span>Drawing your first mine</a></li><li class=""><a href="../../manual/ex-airflow/"><span class="tw">▸</span>Worked examples: airflow, pressure and regulators</a></li><li class="here open"><a href="../../manual/ex-fans/"><span class="tw">▸</span>Worked examples: fans</a><ul><li><a href="#main-fan-duty-for-a-mine"><span class="tw"></span>Main fan duty for a mine</a></li><li><a href="#the-fan-laws-changing-the-speed"><span class="tw"></span>The fan laws: changing the speed</a></li><li><a href="#a-fan-tested-on-surface-and-used-underground"><span class="tw"></span>A fan tested on surface and used underground</a></li><li><a href="#an-evas-on-the-fan-discharge"><span class="tw"></span>An evasé on the fan discharge</a></li><li><a href="#summary-of-the-errors"><span class="tw"></span>Summary of the errors</a></li></ul></li><li class=""><a href="../../manual/ex-psychrometry/"><span class="tw">▸</span>Worked examples: psychrometry and heat</a></li><li class=""><a href="../../manual/ex-refrigeration/"><span class="tw">▸</span>Worked examples: refrigeration and cooling</a></li></ul></li></ul>
+  <div class="mside-links"><a href="../../">ASM Lab website</a><a href="../../download/">Download</a><a href="../../docs/">PDF guides</a></div>
+</nav>
+<div class="mright">
+<header class="mbar">
+  <input id="msearch" type="search" placeholder="Search the manual" aria-label="Search the manual" autocomplete="off">
+  <div id="mresults" hidden></div>
+</header>
+<button class="mtoggle" type="button" aria-label="Show or hide the contents">⇄</button>
+<main class="mdoc">
+<h1 id="worked-examples-fans">Worked examples: fans</h1>
+<p>The questions come from the MINN3019A mine ventilation course (tutorials, class calculations, self-study problems and lecture slides). Each one is set out as the question, the hand solution as in the memo, and then the same question answered with ASM Lab, with the difference from the memo. Memo values read off psychrometric charts carry the chart's reading accuracy, about 0.3 kJ/kg on sigma heat and 0.2 °C on a temperature, so differences of that size are reading differences, not errors.</p>
+<h2 id="main-fan-duty-for-a-mine">Main fan duty for a mine<a class="hl" href="#main-fan-duty-for-a-mine" aria-label="Link to this section">¶</a></h2>
+<p>Tutorial 4.</p>
+<p>The downcast shaft (1–2) is 6 m in diameter with an air velocity of 11 m/s and an air density of 1.05 kg/m³. The upcast (7–10) is 5.0 m in diameter. The air splits at 3 into two equal routes, 3–4–5–6 and 3–8–9–6, which join at 6. Ignore the resistance of the mining areas (4–5 and 8–9), compressed air and leakage. The air density in the fan drift is 1.02 kg/m³. Calculate (a) the air volume at the main fans and (b) the pressure rating of the main fans.</p>
+<h3 id="hand-solution">Hand solution<a class="hl" href="#hand-solution" aria-label="Link to this section">¶</a></h3>
+<p>Every resistance underground is first corrected to the fan-drift density (R × 1.02 / ρ_local). The corrected values are 1–2: 0.00486, 2–3: 0.03709, 3–4 and 3–8: 0.04098, 5–6 and 9–6: 0.03778, 6–7: 0.00297 and 7–10: 0 Ns²/m⁸.</p>
+<div class="eq"><div>Series 1–3: 0.00486 + 0.03709 = 0.04195 Ns²/m⁸</div><div>Each route 3–6: 0.04098 + 0 + 0.03778 = 0.07876 Ns²/m⁸; the two in parallel: 0.07876 / 4 = 0.01969 Ns²/m⁸</div><div>Mine: R_T = 0.04195 + 0.01969 + 0.00297 = 0.06461 Ns²/m⁸</div></div>
+<p>The mass flow in the downcast is carried to the fan drift:</p>
+<div class="eq"><div>Q_dc = 11 × π × 6² / 4 = 311 m³/s; m = 1.05 × 311 = 326.6 kg/s</div><div>Q_fan = 326.6 / 1.02 = 320.2 m³/s</div><div>P_fan = R_T Q² = 0.06461 × 320.2² = 6 624 Pa</div></div>
+<div class="ans"><b>Answer:</b> (a) 320.2 m³/s; (b) 6.6 kPa at 1.02 kg/m³.</div>
+<h3 id="with-asm-lab">With ASM Lab<a class="hl" href="#with-asm-lab" aria-label="Link to this section">¶</a></h3>
+<h4 class="task" id="task-solve-the-mine-for-its-fan-duty">Task: Solve the mine for its fan duty</h4>
+<ol><li>Draw the ten nodes and the airways and give each airway its corrected resistance (Resistance override in <b>Inspect</b>).</li><li>Put the main fan on 7–10 and set it to <b>Fixed quantity</b>, 320.2 m³/s.</li><li>Press <b>F5</b>. The fan reports the pressure it needs, 6 621 Pa, and each route carries 162.5 m³/s.</li></ol>
+<table><thead><tr><th>Quantity</th><th>Memo</th><th>ASM Lab</th><th>Error</th></tr></thead><tbody><tr><td>Air volume at the fan (m³/s)</td><td>320.2</td><td>320.2</td><td>0.01 %</td></tr><tr><td>Fan pressure (Pa)</td><td>6 624</td><td>6 621</td><td>0.05 %</td></tr></tbody></table>
+<div class="note"><b>Note:</b> ASM Lab reports the pressure of a fan with no curve set to a fixed quantity from version 1.45. Earlier versions showed 0 Pa for such a fan.</div>
+<h2 id="the-fan-laws-changing-the-speed">The fan laws: changing the speed<a class="hl" href="#the-fan-laws-changing-the-speed" aria-label="Link to this section">¶</a></h2>
+<p>Lecture slides, fan graphs with density and speed.</p>
+<p>A fan tested at 11.5 r/s and 1.2 kg/m³ gives the curve below. Re-plot the pressure and power curves at 13.8 r/s.</p>
+<table><thead><tr><th>Q (m³/s)</th><th>P (Pa)</th><th>Power (kW)</th></tr></thead><tbody><tr><td>0</td><td>1 770</td><td>8.7</td></tr><tr><td>2</td><td>1 820</td><td>12.3</td></tr><tr><td>4</td><td>1 910</td><td>15.0</td></tr><tr><td>6</td><td>1 670</td><td>16.5</td></tr><tr><td>8</td><td>1 090</td><td>16.0</td></tr><tr><td>9</td><td>610</td><td>15.0</td></tr><tr><td>10</td><td>0</td><td>13.0</td></tr></tbody></table>
+<h3 id="hand-solution-2">Hand solution<a class="hl" href="#hand-solution-2" aria-label="Link to this section">¶</a></h3>
+<p>At a constant density the quantity varies with the speed, the pressure with its square and the power with its cube; the efficiency stays the same at corresponding points:</p>
+<div class="eq"><div>n₂ / n₁ = 13.8 / 11.5 = 1.2</div><div>Q₂ = 1.2 Q₁, P₂ = 1.2² P₁ = 1.44 P₁, W₂ = 1.2³ W₁ = 1.728 W₁</div></div>
+<p>So 4 m³/s at 1 910 Pa and 15 kW becomes 4.8 m³/s at 2 750.4 Pa and 25.92 kW, and so on down the table.</p>
+<h3 id="with-asm-lab-2">With ASM Lab<a class="hl" href="#with-asm-lab-2" aria-label="Link to this section">¶</a></h3>
+<h4 class="task" id="task-run-the-fan-at-a-new-speed">Task: Run the fan at a new speed</h4>
+<ol><li>Enter the 11.5 r/s curve as the fan's points with a reference speed of 11.5 r/s, and set the <b>operating speed</b> to 13.8 r/s.</li><li>To check a point of the new curve, give the system the resistance that passes through it (R = P / Q²) and solve. The fan settles exactly on the memo's re-plotted point.</li></ol>
+<figure><img class="chart" src="../../manual/img/ex-fan-laws.svg" alt="The fan at 11.5 r/s and the curve re-plotted at 13.8 r/s, with ASM Lab's operating points on four system curves." loading="lazy"><figcaption>The fan at 11.5 r/s and the curve re-plotted at 13.8 r/s, with ASM Lab's operating points on four system curves.</figcaption></figure>
+<table><thead><tr><th>Quantity</th><th>Memo</th><th>ASM Lab</th><th>Error</th></tr></thead><tbody><tr><td>Q at the 4.8 m³/s point (m³/s)</td><td>4.80</td><td>4.80</td><td>0.00 %</td></tr><tr><td>P at the 4.8 m³/s point (Pa)</td><td>2 750.4</td><td>2 750.4</td><td>0.00 %</td></tr><tr><td>Power at the 4.8 m³/s point (kW)</td><td>25.92</td><td>25.92</td><td>0.00 %</td></tr><tr><td>Q at the 7.2 m³/s point (m³/s)</td><td>7.20</td><td>7.20</td><td>0.00 %</td></tr><tr><td>P at the 7.2 m³/s point (Pa)</td><td>2 404.8</td><td>2 404.8</td><td>0.00 %</td></tr><tr><td>Power at the 7.2 m³/s point (kW)</td><td>28.51</td><td>28.51</td><td>0.00 %</td></tr><tr><td>Q at the 9.6 m³/s point (m³/s)</td><td>9.60</td><td>9.60</td><td>0.00 %</td></tr><tr><td>P at the 9.6 m³/s point (Pa)</td><td>1 569.6</td><td>1 569.6</td><td>0.00 %</td></tr><tr><td>Power at the 9.6 m³/s point (kW)</td><td>27.65</td><td>27.65</td><td>0.00 %</td></tr><tr><td>Q at the 10.8 m³/s point (m³/s)</td><td>10.80</td><td>10.80</td><td>0.00 %</td></tr><tr><td>P at the 10.8 m³/s point (Pa)</td><td>878.4</td><td>878.4</td><td>0.00 %</td></tr><tr><td>Power at the 10.8 m³/s point (kW)</td><td>25.92</td><td>25.92</td><td>0.00 %</td></tr></tbody></table>
+<div class="note"><b>Note:</b> The point at 2.4 m³/s (2 620.8 Pa) lies on the rising part of the curve, left of the peak. That is the stall zone: a system curve through it also crosses the curve again at a higher quantity, and the fan runs at the stable crossing. ASM Lab flags operation in the stall zone.</div>
+<h2 id="a-fan-tested-on-surface-and-used-underground">A fan tested on surface and used underground<a class="hl" href="#a-fan-tested-on-surface-and-used-underground" aria-label="Link to this section">¶</a></h2>
+<p>Lecture slides, density change tutorial.</p>
+<p>A direct-driven axial fan is tested on surface at an air density of 1.01 kg/m³. It is to be used underground where the density is 1.26 kg/m³, on a 760 mm ventilation column 54 m long with a k-factor of 0.0035 Ns²/m⁴. Find the operating point, input power and efficiency.</p>
+<table><thead><tr><th>Q (m³/s)</th><th>P (Pa)</th><th>Input power (kW)</th></tr></thead><tbody><tr><td>0</td><td>930</td><td>3.6</td></tr><tr><td>2</td><td>840</td><td>4.6</td></tr><tr><td>4</td><td>870</td><td>5.9</td></tr><tr><td>6</td><td>910</td><td>7.8</td></tr><tr><td>8</td><td>860</td><td>10.0</td></tr><tr><td>10</td><td>730</td><td>12.4</td></tr><tr><td>12</td><td>490</td><td>14.7</td></tr><tr><td>14</td><td>0</td><td>14.6</td></tr></tbody></table>
+<h3 id="hand-solution-3">Hand solution<a class="hl" href="#hand-solution-3" aria-label="Link to this section">¶</a></h3>
+<p>At a constant speed the quantity stays, and the pressure and power scale with the density:</p>
+<div class="eq"><div>P₂ = P₁ × 1.26 / 1.01 = 1.2475 P₁; W₂ = 1.2475 W₁</div></div>
+<p>The column resistance (k taken at 1.2 kg/m³ and corrected to 1.26 kg/m³):</p>
+<div class="eq"><div>A = π × 0.76² / 4 = 0.4536 m²; C = π × 0.76 = 2.388 m</div><div>R = k C L / A³ × 1.26 / 1.2 = 0.0035 × 2.388 × 54 / 0.4536³ × 1.05 = 5.075 Ns²/m⁸</div></div>
+<p>The operating point is where R Q² meets the new fan curve, between 10 and 12 m³/s. Interpolating along the curve:</p>
+<div class="eq"><div>Q = 11.56 m³/s, P = 678 Pa, input power = 17.7 kW</div><div>η = Q P / W = 11.56 × 678 / 1 000 / 17.7 = 44.2 %</div></div>
+<div class="ans"><b>Answer:</b> about 11.6 m³/s at 678 Pa, 17.7 kW and 44 % efficiency. The slides give no numerical answer, so the hand answer here is the reference.</div>
+<h3 id="with-asm-lab-3">With ASM Lab<a class="hl" href="#with-asm-lab-3" aria-label="Link to this section">¶</a></h3>
+<h4 class="task" id="task-correct-a-fan-curve-for-density">Task: Correct a fan curve for density</h4>
+<ol><li>Enter the test points. Give the fan the deployed curve (or enter the field test with the measured and the deployed density, and ASM Lab scales it).</li><li>Draw the column as an airway with the resistance above and press <b>F5</b>.</li></ol>
+<figure><img class="chart" src="../../manual/img/ex-fan-density.svg" alt="The surface test curve, the curve corrected to 1.26 kg/m³ and the column's system curve, with ASM Lab's operating point." loading="lazy"><figcaption>The surface test curve, the curve corrected to 1.26 kg/m³ and the column's system curve, with ASM Lab's operating point.</figcaption></figure>
+<table><thead><tr><th>Quantity</th><th>Memo</th><th>ASM Lab</th><th>Error</th></tr></thead><tbody><tr><td>Operating quantity (m³/s)</td><td>11.56</td><td>11.56</td><td>0.03 %</td></tr><tr><td>Operating pressure (Pa)</td><td>677.8</td><td>677.8</td><td>0.01 %</td></tr><tr><td>Input power (kW)</td><td>17.70</td><td>17.70</td><td>0.01 %</td></tr><tr><td>Efficiency (%)</td><td>44.2</td><td>44.2</td><td>0.10 %</td></tr></tbody></table>
+<h2 id="an-evas-on-the-fan-discharge">An evasé on the fan discharge<a class="hl" href="#an-evas-on-the-fan-discharge" aria-label="Link to this section">¶</a></h2>
+<p>Lecture slides, fan performance in a system.</p>
+<p>An 85 % efficient evasé with an inlet area of 0.5 m² and an outlet area of 1.2 m² is fitted to the discharge of an axial fan. Plot the new fan characteristic at 1.2 kg/m³.</p>
+<h3 id="hand-solution-4">Hand solution<a class="hl" href="#hand-solution-4" aria-label="Link to this section">¶</a></h3>
+<p>The evasé turns part of the velocity pressure at the fan outlet into useful pressure:</p>
+<div class="eq"><div>gain = η (VP_in − VP_out) = 0.85 × ½ ρ [(Q / 0.5)² − (Q / 1.2)²]</div></div>
+<p>At 6 m³/s: VP_in = 0.6 × 12² = 86 Pa, VP_out = 0.6 × 5² = 15 Pa, gain = 0.85 × 71 = 61 Pa, so the fan with the evasé gives 500 + 61 = 561 Pa.</p>
+<h3 id="with-asm-lab-4">With ASM Lab<a class="hl" href="#with-asm-lab-4" aria-label="Link to this section">¶</a></h3>
+<h4 class="task" id="task-work-out-the-evas-gain">Task: Work out the evasé gain</h4>
+<ol><li>In <b>Tools &gt; Calculators &gt; Velocity pressure</b>, enter 1.2 kg/m³ and the velocity at the evasé inlet and outlet for each quantity, and take 85 % of the difference.</li><li>For a fan in a network, enter the fan's static pressure with the <b>outlet area</b> and ASM Lab converts it to total pressure.</li></ol>
+<figure><img class="chart" src="../../manual/img/ex-evase.svg" alt="The fan alone and with the evasé: the memo's table and ASM Lab's values." loading="lazy"><figcaption>The fan alone and with the evasé: the memo's table and ASM Lab's values.</figcaption></figure>
+<table><thead><tr><th>Quantity</th><th>Memo</th><th>ASM Lab</th><th>Error</th></tr></thead><tbody><tr><td>Fan + evasé at 2 m³/s (Pa)</td><td>627</td><td>627</td><td>0.04 %</td></tr><tr><td>Fan + evasé at 4 m³/s (Pa)</td><td>627</td><td>627</td><td>0.00 %</td></tr><tr><td>Fan + evasé at 6 m³/s (Pa)</td><td>561</td><td>561</td><td>0.06 %</td></tr><tr><td>Fan + evasé at 8 m³/s (Pa)</td><td>408</td><td>408</td><td>0.03 %</td></tr><tr><td>Fan + evasé at 10 m³/s (Pa)</td><td>169</td><td>169</td><td>0.25 %</td></tr></tbody></table>
+<h2 id="summary-of-the-errors">Summary of the errors<a class="hl" href="#summary-of-the-errors" aria-label="Link to this section">¶</a></h2>
+<table><thead><tr><th>Compared values</th><th>Minimum error</th><th>Median error</th><th>Maximum error</th></tr></thead><tbody><tr><td>23</td><td>0.00 %</td><td>0.00 %</td><td>0.25 % (Fan + evasé at 10 m³/s)</td></tr></tbody></table>
+<div class="mpn"><a href="../../manual/ex-airflow/">Previous: Worked examples: airflow, pressure and regulators</a><a href="../../manual/ex-psychrometry/">Next: Worked examples: psychrometry and heat</a></div>
+<footer class="mfoot">ASM Lab 1.45 documentation · <a href="../../">ASM Lab website</a> · <a href="../../docs/">All guides and PDFs</a> · <a href="../../bugs/">Report a problem with this page</a></footer>
+</main>
+</div>
+<script>window.ASM_ROOT="../../"</script>
+<script src="../../config.js"></script>
+<script src="../../app.js"></script>
+<script src="../../manual.js"></script>
+</body>
+</html>

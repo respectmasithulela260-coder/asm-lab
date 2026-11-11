@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Worked examples: psychrometry and heat — ASM Lab 1.45 documentation</title>
+<meta name="description" content="Course questions on mixing air streams, heat absorption capacity, auto-compression in a deep shaft and pump-chamber heat, solved with charts and with ASM Lab.">
+<link rel="canonical" href="https://respectmasithulela260-coder.github.io/asm-lab/manual/ex-psychrometry/">
+<meta property="og:site_name" content="ASM Lab">
+<link rel="icon" type="image/svg+xml" href="../../logo.svg">
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="../../manual.css">
+<script>try{if(innerWidth>=1100&&localStorage.getItem("asm-manual-toc")!=="closed")document.documentElement.className="toc-open"}catch(e){if(innerWidth>=1100)document.documentElement.className="toc-open"}</script>
+</head>
+<body class="manual">
+<canvas id="air" aria-hidden="true"></canvas>
+<header class="bar">
+  <a class="brand" href="../../"><img src="../../logo.svg" alt="" width="30" height="30">ASM Lab</a>
+  <nav><a href="../../demo/">Demo</a><a href="../../whats-new/">What's new</a><a href="../../docs/">Docs</a><a href="../../manual/" class="here" aria-current="page">Manual</a><a href="../../tutorials/">Tutorials</a><a href="../../licences/">Licences</a><a href="../../bugs/">Bugs</a><a class="cta" href="../../download/">Download</a></nav>
+</header>
+<nav class="mtoc" aria-label="Contents">
+  <a class="mlogo" href="../../manual/"><img src="../../logo.svg" alt="" width="34" height="34"><span>ASM Lab</span><small>1.45</small></a>
+  <ul class="mtree"><li class=" open"><a href="../../manual/"><span class="tw">▾</span>ASM Lab documentation</a><ul><li class=""><a href="../../manual/introduction/"><span class="tw">▸</span>Introduction</a></li><li class=""><a href="../../manual/interface/"><span class="tw">▸</span>The ASM Lab interface</a></li><li class=""><a href="../../manual/files/"><span class="tw"></span>File handling</a></li><li class=""><a href="../../manual/settings/"><span class="tw"></span>Settings</a></li><li class=""><a href="../../manual/first-mine/"><span class="tw"></span>Drawing your first mine</a></li><li class=""><a href="../../manual/ex-airflow/"><span class="tw">▸</span>Worked examples: airflow, pressure and regulators</a></li><li class=""><a href="../../manual/ex-fans/"><span class="tw">▸</span>Worked examples: fans</a></li><li class="here open"><a href="../../manual/ex-psychrometry/"><span class="tw">▸</span>Worked examples: psychrometry and heat</a><ul><li><a href="#mixing-return-air-with-intake-air"><span class="tw"></span>Mixing return air with intake air</a></li><li><a href="#pump-chamber-air-to-return-or-back-into-the-intake"><span class="tw"></span>Pump chamber air: to return, or back into the intake?</a></li><li><a href="#a-deep-downcast-shaft-and-a-haulage"><span class="tw"></span>A deep downcast shaft and a haulage</a></li><li><a href="#heat-from-pumps-and-rock-in-a-crosscut"><span class="tw"></span>Heat from pumps and rock in a crosscut</a></li><li><a href="#summary-of-the-errors"><span class="tw"></span>Summary of the errors</a></li></ul></li><li class=""><a href="../../manual/ex-refrigeration/"><span class="tw">▸</span>Worked examples: refrigeration and cooling</a></li></ul></li></ul>
+  <div class="mside-links"><a href="../../">ASM Lab website</a><a href="../../download/">Download</a><a href="../../docs/">PDF guides</a></div>
+</nav>
+<div class="mright">
+<header class="mbar">
+  <input id="msearch" type="search" placeholder="Search the manual" aria-label="Search the manual" autocomplete="off">
+  <div id="mresults" hidden></div>
+</header>
+<button class="mtoggle" type="button" aria-label="Show or hide the contents">⇄</button>
+<main class="mdoc">
+<h1 id="worked-examples-psychrometry-and-heat">Worked examples: psychrometry and heat</h1>
+<p>The questions come from the MINN3019A mine ventilation course (tutorials, class calculations, self-study problems and lecture slides). Each one is set out as the question, the hand solution as in the memo, and then the same question answered with ASM Lab, with the difference from the memo. Memo values read off psychrometric charts carry the chart's reading accuracy, about 0.3 kJ/kg on sigma heat and 0.2 °C on a temperature, so differences of that size are reading differences, not errors.</p>
+<h2 id="mixing-return-air-with-intake-air">Mixing return air with intake air<a class="hl" href="#mixing-return-air-with-intake-air" aria-label="Link to this section">¶</a></h2>
+<p>Tutorial 2, question 1.</p>
+<p>The air entering a stope must not have a wet bulb above 29 °C. 20 m³/s of return air is available at 32 °C saturated, and intake air at 26.7/32.2 °C. The barometric pressure is 100 kPa. How much intake air must be mixed with the return air?</p>
+<h3 id="hand-solution">Hand solution<a class="hl" href="#hand-solution" aria-label="Link to this section">¶</a></h3>
+<p>From the 100 kPa chart: return air sigma heat 107.2 kJ/kg and specific volume 0.92 m³/kg; intake air 81.5 kJ/kg and 0.906 m³/kg; the mixture at 29 °C wet bulb 92.2 kJ/kg.</p>
+<div class="eq"><div>m_return = 20 / 0.92 = 21.75 kg/s</div><div>A × 81.5 + 21.75 × 107.2 = (A + 21.75) × 92.2, so A = 30.4 kg/s</div><div>Q = 30.4 × 0.906 = 27.5 m³/s</div></div>
+<div class="ans"><b>Answer:</b> 27.5 m³/s of intake air.</div>
+<h3 id="with-asm-lab">With ASM Lab<a class="hl" href="#with-asm-lab" aria-label="Link to this section">¶</a></h3>
+<h4 class="task" id="task-find-the-intake-quantity-with-the-mixing-calculator">Task: Find the intake quantity with the mixing calculator</h4>
+<ol><li>Open <b>Tools &gt; Calculators &gt; Air mixing</b> at 100 kPa. Stream 1: 32/32 °C, 20 m³/s. Stream 2: 26.7/32.2 °C.</li><li>Change the quantity of stream 2 until the mixture's wet bulb is 29.0 °C: 29.0 m³/s.</li></ol>
+<table><thead><tr><th>Quantity</th><th>Memo</th><th>ASM Lab</th><th>Error</th></tr></thead><tbody><tr><td>Sigma heat, return air (kJ/kg)</td><td>107.2</td><td>107.4</td><td>0.19 %</td></tr><tr><td>Sigma heat, intake air (kJ/kg)</td><td>81.5</td><td>81.8</td><td>0.39 %</td></tr><tr><td>Sigma heat, mixture (kJ/kg)</td><td>92.2</td><td>92.2</td><td>0.01 %</td></tr><tr><td>Specific volume, return air (m³/kg)</td><td>0.920</td><td>0.920</td><td>0.04 %</td></tr><tr><td>Intake air (mass) (kg/s)</td><td>30.4</td><td>32.0</td><td>5.34 %</td></tr><tr><td>Intake air (volume) (m³/s)</td><td>27.5</td><td>29.0</td><td>5.38 %</td></tr></tbody></table>
+<div class="note"><b>Note:</b> Every property agrees with the chart to its reading accuracy, yet the quantity differs by about 5 %. The answer hangs on the difference between the mixture and the intake sigma heat, only 10.7 kJ/kg, so reading the intake air as 81.5 instead of 81.82 kJ/kg alone moves the answer by 3 %. The same sigma-heat balance with ASM Lab's property values gives 28.8 m³/s, and the exact mix, which keeps the enthalpy and the moisture, 29.0 m³/s.</div>
+<h2 id="pump-chamber-air-to-return-or-back-into-the-intake">Pump chamber air: to return, or back into the intake?<a class="hl" href="#pump-chamber-air-to-return-or-back-into-the-intake" aria-label="Link to this section">¶</a></h2>
+<p>Tutorial 2, question 2.</p>
+<p>75 m³/s of intake air at 18/26 °C passes a pump chamber; 13 m³/s of it ventilates the chamber, where 70 % of the pumps' 1 000 kW goes into the air. The return wet bulb from the section must not exceed 32 °C, and the barometric pressure is 100 kPa. Scheme 1 sends the pump chamber air straight to return; scheme 2 lets it rejoin the intake. What is the heat absorption capacity of the air for the section in each scheme, and which is better?</p>
+<h3 id="hand-solution-2">Hand solution<a class="hl" href="#hand-solution-2" aria-label="Link to this section">¶</a></h3>
+<p>From the 100 kPa chart: intake air 50.2 kJ/kg and 0.873 m³/kg; return at 32 °C saturated 107.2 kJ/kg.</p>
+<div class="eq"><div>Scheme 1: m = 62 / 0.873 = 71 kg/s; capacity = 71 × (107.2 − 50.2) = 4 050 kW</div><div>Scheme 2: m = 75 / 0.873 = 85.9 kg/s; capacity = 85.9 × 57 − 700 = 4 200 kW</div></div>
+<div class="ans"><b>Answer:</b> scheme 1 4 050 kW, scheme 2 4 200 kW; scheme 2 is better by about 150 kW.</div>
+<h3 id="with-asm-lab-2">With ASM Lab<a class="hl" href="#with-asm-lab-2" aria-label="Link to this section">¶</a></h3>
+<h4 class="task" id="task-compare-the-schemes-with-the-psychrometric-calculator">Task: Compare the schemes with the psychrometric calculator</h4>
+<ol><li>In <b>Tools &gt; Calculators &gt; Psychrometry</b> at 100 kPa, enter 26/18 °C and then 32/32 °C and read the sigma heat and specific volume.</li><li>Multiply the mass flows by the difference in sigma heat, and take off the 700 kW of the pumps in scheme 2.</li></ol>
+<table><thead><tr><th>Quantity</th><th>Memo</th><th>ASM Lab</th><th>Error</th></tr></thead><tbody><tr><td>Sigma heat, intake (kJ/kg)</td><td>50.2</td><td>50.3</td><td>0.21 %</td></tr><tr><td>Sigma heat, 32 °C saturated (kJ/kg)</td><td>107.2</td><td>107.4</td><td>0.19 %</td></tr><tr><td>Specific volume, intake (m³/kg)</td><td>0.873</td><td>0.872</td><td>0.09 %</td></tr><tr><td>Capacity, scheme 1 (kW)</td><td>4 050</td><td>4 059</td><td>0.23 %</td></tr><tr><td>Capacity, scheme 2 (kW)</td><td>4 200</td><td>4 210</td><td>0.24 %</td></tr></tbody></table>
+<h2 id="a-deep-downcast-shaft-and-a-haulage">A deep downcast shaft and a haulage<a class="hl" href="#a-deep-downcast-shaft-and-a-haulage" aria-label="Link to this section">¶</a></h2>
+<p>Tutorial 3.</p>
+<p>300 m³/s of air at 13.6/20.0 °C enters an 1 800 m deep downcast shaft at 84.7 kPa. In the shaft the air picks up 1.15 kJ/kg per 300 m of heat and 0.5 g/kg per 200 m of moisture from the surroundings; auto-compression adds 9.79 kJ/kg per 1 000 m. At the bottom (105 kPa) it travels 1 600 m along a haulage, picking up 2 890 kW of heat and 1.8 l/s of water. Find the condition of the air at the end of the haulage and the share of the shaft's heat that comes from auto-compression.</p>
+<h3 id="hand-solution-3">Hand solution<a class="hl" href="#hand-solution-3" aria-label="Link to this section">¶</a></h3>
+<p>At the shaft top (85 kPa chart): r = 9.0 g/kg, S = 42.4 kJ/kg, mass flow 297.6 kg/s.</p>
+<div class="eq"><div>Auto-compression: 9.79 × 1.8 = 17.62 kJ/kg; heat from the rock: 1.15 × 1 800 / 300 = 6.9 kJ/kg</div><div>Moisture in the shaft: 0.5 × 1 800 / 200 = 4.5 g/kg</div><div>Haulage: 2 890 / 297.6 = 9.71 kJ/kg and 1 800 / 297.6 = 6.05 g/kg</div><div>End of haulage: S = 42.4 + 17.62 + 6.9 + 9.71 = 76.63 kJ/kg, r = 9.0 + 4.5 + 6.05 = 19.55 g/kg</div><div>From the 105 kPa chart: 26.1/28.8 °C</div><div>Auto-compression: 297.6 × 17.62 = 5 244 kW, which is 17.62 / 24.52 = 71.9 % of the shaft's heat</div></div>
+<div class="ans"><b>Answer:</b> 26.1/28.8 °C at the end of the haulage; auto-compression 5 244 kW, 71.9 % of the heat added in the shaft.</div>
+<h3 id="with-asm-lab-3">With ASM Lab<a class="hl" href="#with-asm-lab-3" aria-label="Link to this section">¶</a></h3>
+<h4 class="task" id="task-follow-the-air-down-the-shaft">Task: Follow the air down the shaft</h4>
+<ol><li>In <b>Tools &gt; Calculators &gt; Psychrometry</b> enter 84.7 kPa and 20/13.6 °C for the moisture, sigma heat and specific volume at the top.</li><li>Add the heat and moisture as above, then find the state at 105 kPa with that sigma heat and moisture: ASM Lab gives 26.1/28.7 °C.</li></ol>
+<table><thead><tr><th>Quantity</th><th>Memo</th><th>ASM Lab</th><th>Error</th></tr></thead><tbody><tr><td>Moisture at the top (g/kg)</td><td>9.00</td><td>9.00</td><td>0.03 %</td></tr><tr><td>Sigma heat at the top (kJ/kg)</td><td>42.40</td><td>42.41</td><td>0.03 %</td></tr><tr><td>Mass flow (kg/s)</td><td>297.6</td><td>297.7</td><td>0.02 %</td></tr><tr><td>Sigma heat at the end (kJ/kg)</td><td>76.63</td><td>76.64</td><td>0.02 %</td></tr><tr><td>Moisture at the end (g/kg)</td><td>19.55</td><td>19.54</td><td>0.03 %</td></tr><tr><td>Wet bulb at the end (°C)</td><td>26.1</td><td>26.1</td><td>0.03 %</td></tr><tr><td>Dry bulb at the end (°C)</td><td>28.8</td><td>28.7</td><td>0.19 %</td></tr><tr><td>Heat of auto-compression (kW)</td><td>5 244</td><td>5 246</td><td>0.03 %</td></tr><tr><td>Share from auto-compression (%)</td><td>71.9</td><td>71.9</td><td>0.05 %</td></tr></tbody></table>
+<div class="note"><b>Note:</b> In a full network model the thermal solver does this along every airway, with auto-compression from the airway's change in elevation.</div>
+<h2 id="heat-from-pumps-and-rock-in-a-crosscut">Heat from pumps and rock in a crosscut<a class="hl" href="#heat-from-pumps-and-rock-in-a-crosscut" aria-label="Link to this section">¶</a></h2>
+<p>Class calculations 1, question 2.</p>
+<p>55.3 m³/s of air at 29.1/35.3 °C enters 56 level crosscut at A (117.5 kPa). Part of it ventilates a pump chamber with four 1 500 kW pumps whose motors are 94 % efficient, and then rejoins the main stream at B. At the end of the crosscut, C, the air is at 31.1/34.8 °C. Find (a) the temperature at B, assuming no moisture is added, and (b) the heat from the rock and the moisture picked up between A and C.</p>
+<h3 id="hand-solution-4">Hand solution<a class="hl" href="#hand-solution-4" aria-label="Link to this section">¶</a></h3>
+<p>From the 117.5 kPa chart at A: S = 82.8 kJ/kg, r = 19.3 g/kg, 0.778 m³/kg, so m = 55.3 / 0.778 = 71.1 kg/s.</p>
+<div class="eq"><div>Pump heat: 4 × (1 500 / 0.94 − 1 500) = 383 kW, so ΔS = 383 / 71.1 = 5.4 kJ/kg</div><div>S_B = 82.8 + 5.4 = 88.2 kJ/kg at r = 19.3 g/kg: 30.3/40.3 °C</div><div>At C: S = 91.5 kJ/kg, r = 23.3 g/kg; heat A to C = 71.1 × 8.7 = 618.6 kW</div><div>Heat from the rock: 618.6 − 383 = 236 kW; water: 71.1 × (23.3 − 19.3) = 284 g/s = 0.284 l/s</div></div>
+<div class="ans"><b>Answer:</b> (a) 30.3/40.3 °C at B; (b) 236 kW from the rock and 0.284 l/s of water.</div>
+<h3 id="with-asm-lab-4">With ASM Lab<a class="hl" href="#with-asm-lab-4" aria-label="Link to this section">¶</a></h3>
+<h4 class="task" id="task-work-through-the-crosscut-with-the-calculators">Task: Work through the crosscut with the calculators</h4>
+<ol><li><b>Psychrometry</b> at 117.5 kPa for A (35.3/29.1 °C) and C (34.8/31.1 °C).</li><li>Add the pump heat to A's sigma heat and find the state with A's moisture: 30.4/40.6 °C at B.</li></ol>
+<table><thead><tr><th>Quantity</th><th>Memo</th><th>ASM Lab</th><th>Error</th></tr></thead><tbody><tr><td>Sigma heat at A (kJ/kg)</td><td>82.8</td><td>82.9</td><td>0.14 %</td></tr><tr><td>Moisture at A (g/kg)</td><td>19.3</td><td>19.4</td><td>0.63 %</td></tr><tr><td>Mass flow (kg/s)</td><td>71.1</td><td>71.2</td><td>0.10 %</td></tr><tr><td>Pump heat (kW)</td><td>383</td><td>383</td><td>0.01 %</td></tr><tr><td>Wet bulb at B (°C)</td><td>30.3</td><td>30.4</td><td>0.21 %</td></tr><tr><td>Dry bulb at B (°C)</td><td>40.3</td><td>40.6</td><td>0.68 %</td></tr><tr><td>Sigma heat at C (kJ/kg)</td><td>91.5</td><td>91.6</td><td>0.09 %</td></tr><tr><td>Moisture at C (g/kg)</td><td>23.3</td><td>23.3</td><td>0.16 %</td></tr><tr><td>Heat from the rock (kW)</td><td>236</td><td>234</td><td>0.99 %</td></tr><tr><td>Water picked up (l/s)</td><td>0.284</td><td>0.273</td><td>3.74 %</td></tr></tbody></table>
+<div class="note"><b>Note:</b> The memo's own table gives 40.5 °C for the dry bulb at B and its text 40.3 °C. The heat from the rock is a small difference of two large numbers (617 − 383 kW), so a 0.1 kJ/kg reading difference in sigma heat moves it by 3 %. The water picked up is likewise a difference of two moisture contents: ASM Lab gives 19.42 g/kg at A where the chart reads 19.3, which alone accounts for the 4 % difference.</div>
+<h2 id="summary-of-the-errors">Summary of the errors<a class="hl" href="#summary-of-the-errors" aria-label="Link to this section">¶</a></h2>
+<table><thead><tr><th>Compared values</th><th>Minimum error</th><th>Median error</th><th>Maximum error</th></tr></thead><tbody><tr><td>30</td><td>0.01 %</td><td>0.15 %</td><td>5.38 % (Intake air (volume))</td></tr></tbody></table>
+<div class="mpn"><a href="../../manual/ex-fans/">Previous: Worked examples: fans</a><a href="../../manual/ex-refrigeration/">Next: Worked examples: refrigeration and cooling</a></div>
+<footer class="mfoot">ASM Lab 1.45 documentation · <a href="../../">ASM Lab website</a> · <a href="../../docs/">All guides and PDFs</a> · <a href="../../bugs/">Report a problem with this page</a></footer>
+</main>
+</div>
+<script>window.ASM_ROOT="../../"</script>
+<script src="../../config.js"></script>
+<script src="../../app.js"></script>
+<script src="../../manual.js"></script>
+</body>
+</html>
