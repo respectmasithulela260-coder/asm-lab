@@ -50,6 +50,31 @@
     </div>
   </section>
 
+
+  <section class="pg" id="ai-humans">
+    <div class="wrap">
+      <div class="panel p-ink bite reveal" style="padding:clamp(28px,5vw,64px)">
+        <h2>AI and humans</h2>
+        <p class="about">An AI assistant that works the model with you, and people in the model whose bodies feel the air.</p>
+        <h3 style="margin-top:22px">The ASM Assistant</h3>
+        <div class="do">
+          <div class="card live"><div class="ico"><b>✦</b></div><h3>Asks, draws, solves</h3><p>Ask in plain words: it draws networks, solves them, finds the slow and hot places, tests a fan or a regulator and reports what got better and what got worse.</p></div>
+          <div class="card live"><div class="ico"><b>=</b></div><h3>Figures from ASM Lab</h3><p>The model plans and words; every number comes from ASM Lab’s solver and calculators, and each figure is checked against them before you see it.</p></div>
+          <div class="card live"><div class="ico"><b>▤</b></div><h3>Your library folder</h3><p>Pick one folder of your files. It reads Word, PowerPoint, Excel and text, transcribes videos, names the file it used, and touches nothing outside that folder. You choose whether it may read or save.</p></div>
+          <div class="card live"><div class="ico"><b>◐</b></div><h3>Your choice of model</h3><p>Hosted models with your own key, a model on your own computer (private, no key), or an AI login you already have. Each has its own character, and a built-in benchmark shows which answers best and fastest.</p></div>
+        </div>
+        <p class="small" style="margin-top:14px;color:#cfd6e4">Nothing the assistant changes reaches your model until you press <b>Put in my model</b>. Stop ends its turn safely after the step it is on.</p>
+        <h3 style="margin-top:28px">People in the model</h3>
+        <div class="do">
+          <div class="card live"><div class="ico"><b>☺</b></div><h3>Workers and their bodies</h3><p>Place a crew in a stope. ASM Lab follows each body’s core and skin temperature in the air it is working in, at the work rate you set.</p></div>
+          <div class="card live"><div class="ico"><b>!</b></div><h3>Heat stress</h3><p>Each working place gets a class (safe, caution, restricted, withdraw) from a two-node body model: a screening tool that shows where crews are at risk first.</p></div>
+          <div class="card live"><div class="ico"><b>↗</b></div><h3>Evacuation</h3><p>Send a stope’s crew to its refuge bay while heat and gas (CO) spread, and see who reaches it and how hot they get on the way.</p></div>
+          <div class="card live"><div class="ico"><b>∿</b></div><h3>Monte Carlo</h3><p>Repeat the evacuation many times with varied people and behaviour, and read the spread (P10 to P90) of times and heat stress, not one number.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="pg" id="faq">
     <div class="wrap reveal">
       <h2>Questions about <span class="live-text">ASM Lab</span></h2>
@@ -59,6 +84,8 @@
         <details><summary>Can I run airflow and fan simulation with my own fans?</summary><p>Yes. A fan takes a curve or a fixed flow and a regulator sets a resistance. Change them, solve again and compare where the air goes.</p></details>
         <details><summary>Does it cover underground heat and humidity?</summary><p>Yes. ASM Lab follows dry bulb, wet bulb and moisture along the route and shows where the heat builds up.</p></details>
         <details><summary>What is the tunnel CFD for?</summary><p>It looks inside the tunnels you choose. Send them to the 3D solver, then view streamlines, a cross-section, the wall and travelling arrows.</p></details>
+        <details><summary>Where do the assistant’s numbers come from?</summary><p>From ASM Lab itself. The AI model chooses the steps and writes the answer; the solver and the calculators produce every figure, and the answer is checked against them.</p></details>
+        <details><summary>Can ASM Lab model the people underground?</summary><p>Yes. Crews in a stope have a body temperature that follows the air they work in and a heat-stress class, and they can be sent to the refuge bay, once or many times over (Monte Carlo).</p></details>
         <details><summary>Do I need a licence key?</summary><p>Yes. Copy an available key from the <a class="text-link" href="licences/">Licences</a> list and paste it in ASM Lab. The key is checked online at least once a day, so connect to the internet on the days you use it.</p></details>
         <details><summary>Does ASM Lab run on a Mac?</summary><p>Windows has an installer that updates itself. On a Mac or any other computer, use the web version: nothing to install.</p></details>
       </div>
