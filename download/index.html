@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Request ASM Lab – mine ventilation software</title>
+<meta name="description" content="Request ASM Lab: a trial, licences, academic use or a quotation. Your licence key and download link come by email.">
+<link rel="canonical" href="https://respectmasithulela260-coder.github.io/asm-lab/download/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Request ASM Lab – mine ventilation software">
+<meta property="og:description" content="Request ASM Lab: a trial, licences, academic use or a quotation. Your licence key and download link come by email.">
+<link rel="icon" type="image/svg+xml" href="../logo.svg">
+<link rel="stylesheet" href="../style.css">
+
+</head>
+<body>
+<canvas id="air" aria-hidden="true"></canvas>
+<header class="bar">
+  <a class="brand" href="../"><img src="../logo.svg" alt="" width="30" height="30">ASM Lab</a>
+  <nav><a href="../demo/">Demo</a><a href="../whats-new/">What's new</a><a href="../docs/">Docs</a><a href="../manual/">Manual</a><a href="../tutorials/">Tutorials</a><a href="../licences/">Licences</a><a href="../bugs/">Bugs</a><a class="cta" href="../download/">Request</a></nav>
+</header>
+<main id="top" class="page">
+<section class="pg" id="download">
+    <div class="wrap reveal">
+      <h1 class="ph">Request <span class="live-text">ASM Lab</span></h1>
+      <p class="sub" style="margin-inline:auto">ASM Lab is available on request. Tell us who you are and what you need: we send your licence key and a private download link by email, usually within one working day.</p>
+      <div class="bug-grid">
+        <div class="panel p-ink" style="padding:clamp(24px,4vw,44px)">
+          <form id="reqForm" class="bug-form">
+            <label for="reqName">Your name</label><input id="reqName" required maxlength="120" autocomplete="name">
+            <label for="reqEmail">Email (the licence and link are sent here)</label><input id="reqEmail" type="email" required maxlength="200" autocomplete="email">
+            <div class="bug-two">
+              <div><label for="reqCompany">Company, mine or university</label><input id="reqCompany" maxlength="160" autocomplete="organization"></div>
+              <div><label for="reqCountry">Country</label><input id="reqCountry" maxlength="80" autocomplete="country-name"></div>
+            </div>
+            <div class="bug-two">
+              <div><label for="reqKind">What you need</label><select id="reqKind" required>
+                <option value="trial">A trial</option><option value="purchase">To buy licences</option><option value="academic">Academic (students and lecturers)</option><option value="quote">A quotation</option>
+              </select></div>
+              <div><label for="reqSeats">Computers</label><input id="reqSeats" type="number" min="1" max="500" value="1" required></div>
+            </div>
+            <label for="reqMessage">Anything we should know (optional)</label><textarea id="reqMessage" rows="4" maxlength="3000" placeholder="For example: how you will use ASM Lab, billing details for a quotation, or an order number."></textarea>
+            <label class="req-consent"><input id="reqConsent" type="checkbox" required> We may use these details to reply to this request and send your licence. They are kept privately and deleted within a year.</label>
+            <div class="trap" aria-hidden="true"><label for="reqSite">Leave this empty</label><input id="reqSite" tabindex="-1" autocomplete="off"></div>
+            <button class="btn main big" id="reqSend" type="submit">Send request</button>
+            <p class="lic-note" id="reqNote" role="status"></p>
+          </form>
+        </div>
+        <div>
+          <h2 class="h3">How it works</h2>
+          <div class="do how">
+            <div class="card live"><div class="ico"><b>1</b></div><h3>Send the request</h3><p>A trial, licences to buy, academic use or a quotation.</p></div>
+            <div class="card live"><div class="ico"><b>2</b></div><h3>Check your email</h3><p>You get a licence key and a private download link (valid for 14 days).</p></div>
+            <div class="card live"><div class="ico"><b>3</b></div><h3>Install and paste the key</h3><p>Windows installer that updates itself. The key is checked online.</p></div>
+          </div>
+          <p class="ver" id="ver">Always the newest release.</p>
+          <p class="small">Questions or a quotation by email: <a class="text-link" href="mailto:ASMlabventilation@gmail.com">ASMlabventilation@gmail.com</a>. <a class="text-link" href="../manual/">Read the manual</a> first if you like.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer>ASM Lab · mine ventilation software · <a href="../licences/">Licences</a> · <a href="../bugs/">Report a bug</a> · <a href="../docs/">Docs</a> · <a href="../download/">Request ASM Lab</a></footer>
+<script>window.ASM_ROOT="../"</script>
+<script src="../config.js"></script>
+<script src="../human.js"></script>
+<script src="../app.js"></script>
+<script src="../request.js"></script>
+</body>
+</html>

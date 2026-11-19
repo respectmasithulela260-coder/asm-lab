@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ASM Lab licences: admin</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src https: http://localhost:* http://127.0.0.1:*; base-uri 'none'; form-action 'none'">
+<link rel="icon" type="image/svg+xml" href="../logo.svg">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<header class="bar">
+  <a class="brand" href="../"><img src="../logo.svg" alt="" width="30" height="30">ASM Lab</a>
+  <div class="account" id="account" hidden>
+    <span>Signed in as <b id="who"></b></span>
+    <button class="btn ghost mini" id="changePass" type="button">Change password</button>
+<button class="btn ghost mini" id="signOut" type="button">Sign out</button>
+  </div>
+</header>
+
+<main>
+  <section id="signIn">
+    <div class="wrap narrow">
+      <div class="panel p-ink bite reveal" id="signInPanel">
+        <h2>Licence <span class="live-text">admin</span></h2>
+<p class="sub">Sign in with your admin key file and its password.</p>
+<form id="signInForm" class="stack">
+<label for="keyFile">Admin key file (.asmadmin)</label>
+<input id="keyFile" type="file" accept=".asmadmin" required>
+<label for="keyPass">Password</label>
+<input id="keyPass" type="password" autocomplete="current-password" required>
+<div class="row start">
+<button class="btn main" type="submit">Sign in</button>
+<button class="btn ghost" id="retry" type="button" hidden>Try again</button>
+</div>
+</form>
+<p id="signInNote" class="notice err" role="alert"></p>
+<details class="hint" id="makeKey">
+<summary>First time, or a new token: make a key file</summary>
+<p>The key file holds a fine-grained GitHub token with contents read and write on <code id="repoName"></code>, locked with your password (PBKDF2, 600 000 rounds, AES-GCM, in this browser). Keep the file safe; without the password it cannot be opened, and a lost password cannot be recovered. <a class="link" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noreferrer">Create a token on GitHub</a></p>
+<form id="makeForm" class="stack">
+<label for="token">GitHub token</label>
+<input id="token" type="password" autocomplete="off" spellcheck="false" required>
+<label for="newPass">Password (12 characters or more)</label>
+<input id="newPass" type="password" autocomplete="new-password" minlength="12" required>
+<label for="newPass2">Password again</label>
+<input id="newPass2" type="password" autocomplete="new-password" minlength="12" required>
+<button class="btn ghost" type="submit">Make the key file and sign in</button>
+</form>
+</details>
+      </div>
+    </div>
+  </section>
+
+  <section id="manage" hidden>
+    <div class="wrap">
+      <div class="panel p-ink bite reveal" id="managePanel">
+        <h2>ASM Lab <span class="live-text">licences</span></h2>
+        <p class="sub">ASM Lab checks its key at least once a day, so changes reach the app within a day.</p>
+
+        <label class="tick"><input type="checkbox" id="licPublic"> Show the licence list to visitors (keys ticked Listed)</label>
+
+        <form id="licenceForm" class="gen">
+          <div><label for="licCount">How many keys</label><input id="licCount" type="number" min="1" max="500" value="1"></div>
+          <div><label for="licExpiry">Expiry date</label><input id="licExpiry" type="date" required></div>
+          <div><label for="licDevices">Computers per key</label><input id="licDevices" type="number" min="1" max="50" value="1"></div>
+          <div><label for="licLabel">Label (customer, site…)</label><input id="licLabel" maxlength="120" placeholder="optional"></div>
+          <label class="tick"><input type="checkbox" id="licListed" checked> Listed</label>
+          <button id="licGenerate" class="btn main" type="submit">Generate keys</button>
+        </form>
+
+        <p id="notice" class="notice" role="status" hidden></p>
+        <p id="seatsNote" class="hint"></p>
+
+        <div class="tools">
+          <input id="licFilter" placeholder="Filter by key, customer or batch" aria-label="Filter">
+<select id="licStatus" aria-label="Show"><option value="all">All keys</option><option value="active">Active</option><option value="expired">Expired</option><option value="withdrawn">Withdrawn</option><option value="listed">Listed (students)</option><option value="unlisted">Not listed (customers)</option></select>
+<label class="tick"><input type="checkbox" id="licGroup" checked> Group by customer</label>
+          <button id="licReload" class="btn ghost mini" type="button">Reload</button>
+          <button id="licExport" class="btn ghost mini" type="button">Export CSV</button>
+          <span id="licCountText" class="hint"></span>
+        </div>
+
+<div id="licBulk" class="tools bulk" hidden>
+<b id="licSelText"></b>
+<button type="button" class="btn mini danger" id="bDelete">Delete</button>
+<button type="button" class="btn mini ghost" id="bWithdraw">Withdraw</button>
+<button type="button" class="btn mini ghost" id="bReinstate">Reinstate</button>
+<button type="button" class="btn mini ghost" id="bList">List</button>
+<button type="button" class="btn mini ghost" id="bUnlist">Unlist</button>
+<button type="button" class="btn mini ghost" id="bMonth">+1 month</button>
+<button type="button" class="btn mini ghost" id="bYear">+1 year</button>
+<input type="date" id="bDate" aria-label="New expiry date"><button type="button" class="btn mini ghost" id="bSetDate">Set expiry</button>
+<input type="number" id="bPcs" class="num" min="1" max="50" placeholder="PCs" aria-label="Computers"><button type="button" class="btn mini ghost" id="bSetPcs">Set computers</button>
+<input id="bLabel" placeholder="customer" maxlength="120" aria-label="Customer"><button type="button" class="btn mini ghost" id="bSetLabel">Set customer</button>
+<button type="button" class="btn mini ghost" id="bClear">Clear selection</button>
+</div>
+<table class="lic-table admin-table">
+<thead><tr><th><input type="checkbox" id="licAll" title="Select every key shown" aria-label="Select all shown"></th><th>Key</th><th>Customer</th><th>Expires</th><th>Computers</th><th>Status</th><th>Listed</th><th></th></tr></thead>
+          <tbody id="licenceRows"></tbody>
+        </table>
+
+        <h2 class="issues-head">Licence <span class="live-text">requests</span></h2>
+<p class="sub">From the website's request form. Make key and email: makes a key for the request, a private download link, and opens your email with both.</p>
+<div class="tools"><button id="reqReload" class="btn ghost mini" type="button">Reload</button><label class="tick"><input type="checkbox" id="reqDone"> Show done and declined</label><span id="reqCount" class="hint"></span></div>
+<p id="reqNote" class="hint"></p>
+<table class="lic-table admin-table">
+<thead><tr><th>When</th><th>Who</th><th>Organisation</th><th>Needs</th><th>Message</th><th>Status</th><th></th></tr></thead>
+<tbody id="requestRows"></tbody>
+</table>
+
+<h2 class="issues-head">Known <span class="live-text">issues</span></h2>
+        <p class="sub">Shown on the public Bugs page.</p>
+        <form id="issueForm" class="gen">
+          <div><label for="issueTitle">Issue</label><input id="issueTitle" maxlength="160" required></div>
+          <div><label for="issueSeverity">Severity</label><select id="issueSeverity"><option>low</option><option selected>medium</option><option>high</option><option>critical</option></select></div>
+          <button class="btn main" type="submit">Add issue</button>
+        </form>
+        <table class="lic-table admin-table">
+          <thead><tr><th>Issue</th><th>Severity</th><th>Status</th><th>Fixed in</th><th></th></tr></thead>
+          <tbody id="issueRows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="../config.js"></script>
+<script src="store.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

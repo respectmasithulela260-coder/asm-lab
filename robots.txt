@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://respectmasithulela260-coder.github.io/asm-lab/sitemap.xml

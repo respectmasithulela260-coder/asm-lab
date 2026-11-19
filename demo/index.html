@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A real mine, solved – ASM Lab demo</title>
+<meta name="description" content="The Gold vein sample mine solved by ASM Lab: airflow, air speed and wet bulb in every airway, in three scenarios, and a fly-through of a real 3D tunnel.">
+<link rel="canonical" href="https://respectmasithulela260-coder.github.io/asm-lab/demo/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="A real mine, solved – ASM Lab demo">
+<meta property="og:description" content="The Gold vein sample mine solved by ASM Lab: airflow, air speed and wet bulb in every airway, in three scenarios, and a fly-through of a real 3D tunnel.">
+<link rel="icon" type="image/svg+xml" href="../logo.svg">
+<link rel="stylesheet" href="../style.css">
+
+</head>
+<body>
+<canvas id="air" aria-hidden="true"></canvas>
+<header class="bar">
+  <a class="brand" href="../"><img src="../logo.svg" alt="" width="30" height="30">ASM Lab</a>
+  <nav><a href="../demo/" class="here" aria-current="page">Demo</a><a href="../whats-new/">What's new</a><a href="../docs/">Docs</a><a href="../manual/">Manual</a><a href="../tutorials/">Tutorials</a><a href="../licences/">Licences</a><a href="../bugs/">Bugs</a><a class="cta" href="../download/">Request</a></nav>
+</header>
+<main id="top" class="page">
+<section class="pg" id="demo">
+    <div class="wrap reveal">
+      <h1 class="ph">A real mine, <span class="live-text">solved</span></h1>
+      <p class="sub">The Gold vein sample mine, solved by ASM Lab: every airway with its airflow, speed and wet bulb. Switch the scenario and watch the air share itself out again. Drag to turn the model; hover an airway to read it.</p>
+      <div class="demo mine-demo">
+        <div class="stage" id="mineStage" data-src="../demo-mine.json"><canvas aria-label="The Gold vein sample mine with its airflow"></canvas><div class="mine-tip" id="mineTip" hidden></div></div>
+        <div class="ctrl">
+          <div><label>Scenario</label><div class="row" id="mineScen" style="gap:8px;flex-wrap:wrap"></div></div>
+          <p class="hint" id="mineNote"></p>
+          <div><label for="mineColour">Colour by</label><select id="mineColour"><option value="speed">Air speed</option><option value="wb">Wet bulb</option></select></div>
+          <p class="hint" id="mineLegend"></p>
+          <div class="read" id="mineRead"></div>
+          <p class="hint">Results from ASM Lab's solver, worked out beforehand: this page shows them, it does not solve. White dot: the main fan. Red square: the closed door. Thicker lines carry more air.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="inside">
+    <div class="pin">
+      <div id="inside3d"></div>
+      <div class="inside-top">
+        <p class="eyebrow">Inside a real tunnel model</p>
+        <h2>Scroll to <span class="live-text">fly in</span></h2>
+        <p class="sub" style="margin-bottom:0">This is a 6 by 5 m horseshoe tunnel, loaded from a GLB file. The arrows show the idea of the flow: quick in the middle, slow at the wall, red where the air enters and blue as it travels on. Two miners in their PPE walk the tunnel. Scroll faster and the air does too.</p>
+      </div>
+      <div class="inside-hud"><span>Air speed <b id="insideSpd">–</b></span><i><u id="insideBar"></u></i></div>
+      <p id="insideStatus" class="inside-status">Scroll down to load the tunnel</p>
+    </div>
+  </div>
+
+  
+</main>
+<footer>ASM Lab · mine ventilation software · <a href="../licences/">Licences</a> · <a href="../bugs/">Report a bug</a> · <a href="../docs/">Docs</a> · <a href="../download/">Request ASM Lab</a></footer>
+<script>window.ASM_ROOT="../"</script>
+<script src="../config.js"></script>
+<script src="../human.js"></script>
+<script src="../app.js"></script>
+<script src="../demo-mine.js"></script><script type="importmap">{"imports":{"three":"./../vendor/three/three.module.js","three/addons/":"./../vendor/three/addons/"}}</script><script type="module" src="../inside.js"></script>
+</body>
+</html>
