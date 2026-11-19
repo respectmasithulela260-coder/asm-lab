@@ -17,7 +17,7 @@
 <canvas id="air" aria-hidden="true"></canvas>
 <header class="bar">
   <a class="brand" href="../"><img src="../logo.svg" alt="" width="30" height="30">ASM Lab</a>
-  <nav><a href="../demo/">Demo</a><a href="../whats-new/">What's new</a><a href="../docs/" class="here" aria-current="page">Docs</a><a href="../manual/">Manual</a><a href="../tutorials/">Tutorials</a><a href="../licences/">Licences</a><a href="../bugs/">Bugs</a><a class="cta" href="../download/">Request</a></nav>
+  <nav><a href="../demo/">Demo</a><a href="../whats-new/">What's new</a><a href="../docs/" class="here" aria-current="page">Docs</a><a href="../manual/">Manual</a><a href="../tutorials/">Tutorials</a><a href="../bugs/">Bugs</a><a class="cta" href="../download/">Request</a></nav>
 </header>
 <main id="top" class="page">
 <section class="pg"><div class="wrap kit">
@@ -46,7 +46,7 @@
 <ol><li><code>node scripts/run_headless.mjs &lt;assets&gt; project.asmlab.json both solved.asmlab.json</code> — the printed line must say <code>"ok":true</code> and the status says whether it converged; read warnings in <code>solveReport.issues</code>.</li><li>Per airway, the solved file holds <code>Q, v, dP, rho</code> and <code>thermo.inlet</code> / <code>thermo.outlet {tdb, twb, rh, moisture, sigma, h, rho, P}</code>. Per node: <code>P</code> (Pa), <code>rho</code>, and after a heat solve <code>thermo</code> with the same fields (the app shows these under Results when a node is selected).</li><li>Clean Up (File menu; <code>cleanUp()</code> in a script) removes nodes no airway uses, zero-length airways and empty collections: run it on a converted network before comparing.</li><li>Compare with another tool using <code>compare_with_reference.py</code>.</li></ol></div>
 </div></section>
 </main>
-<footer>ASM Lab · mine ventilation software · <a href="../licences/">Licences</a> · <a href="../bugs/">Report a bug</a> · <a href="../docs/">Docs</a> · <a href="../download/">Request ASM Lab</a></footer>
+<footer>ASM Lab · mine ventilation software · <a href="../bugs/">Report a bug</a> · <a href="../docs/">Docs</a> · <a href="../download/">Request ASM Lab</a></footer>
 <script>window.ASM_ROOT="../"</script>
 <script src="../config.js"></script>
 <script src="../human.js"></script>
